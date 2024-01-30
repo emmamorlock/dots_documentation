@@ -2,6 +2,7 @@ site_name: DoTS documentation
 site_url: https://dots.documentation.com/
 nav:
     - Home: index.md
+    - Resolver: resolver.md
     - Cookbook: cookbook.md
     - License: license.md
 # theme: readthedocs

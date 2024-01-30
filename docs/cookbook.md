@@ -32,10 +32,10 @@ racine
 ```
 
 Pour la gestion et l’édition de vos sources XML/TEI vous pouvez bien entendu organiser le dossier comme bon vous semble.
-Mais pour le chargement en base, le dossier de dépôt DoTS explicite vos choix documentaires :
+Mais pour le chargement en base, le dossier de dépôt DoTS explicite vos choix documentaires. POur la publication d’un périodique,
 
-- un article peut être traité comme un document (cas 1)
-- un article peut être traité comme le fragment d’un volume (cas 2)
+- les articles (ici les positions de thèse) peuvent être traités comme des documents (cas 1)
+- les articles (ici les positions de thèse) peuvent être traités comme le fragment d’un volume (cas 2)
 
 
 ### Cas 1. Un article est un document
@@ -68,7 +68,7 @@ encpos							collection (project root)
 
 #### Corpus de test
 
-Le corpus de test est disponible : [https://github.com/chartes/dots/tree/chore/change-data-model/13/data_test/ENCPOS/TEI](https://github.com/chartes/dots/tree/chore/change-data-model/13/data_test/ENCPOS/TEI)
+Le corpus de test est disponible : [https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract](https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract)
 
 ```
 Dir Project
@@ -103,16 +103,16 @@ Dir Project
 
 Ce dossier est facultatif.
 
-Il contient les métadonnées descriptives des ressources : `titles.tsv` pour la description des collections et `encpos.tsv` pour la description des documents.
+Il contient les métadonnées descriptives des ressources : `default_collections_titles.tsv` pour la description des collections et `documents_metadata.tsv` pour la description des documents.
 
-Le fichier `metadata_mapping.xml` est important. Il permet de :
+Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
 
 - lister et qualifier les métadonnées partagées via le endpoint DTS Collections ;
 - déclarer leur localisation.
 
 Ces métadonnées peuvent être inscrites dans la source XML/TEI, généralement dans le `teiHeader`. Dans ce cas, la localisation est inscrite en valeur de l’attribut `@xpath`.
 
-Ces métadonnées peuvent être déportées dans un tableur CSV (`@source`). Dans ce cas, la localisation est inscrite en valeur de l’attribut `@content`.
+Ces métadonnées peuvent être déportées dans un tableur CSV (`@source`). Dans ce cas, la localisation est inscrite en valeur de l’attribut `@value`.
 
 Exemples :
 
@@ -131,12 +131,27 @@ Exemples :
   format="csv"
   source="/dots/titles.csv"
   resourceId="id"
-  content="title"
+  value="title"
   scope="collection"/>
 ```
 
-> NB1. Il est recommandé de fournir a minima un CSV avec le titre des collections (ici `titles.csv`).  
+> NB1. Il est recommandé de fournir a minima un CSV avec le titre des collections (ici `default_collections_titles.tsv`).  
 > NB2. Si aucune métadonnée n’est fournie, DoTS utilise le nom du dossier (qui sert aussi d’identifiant de collection) comme titre de collection.
+
+
+#### Déclaration des fragments
+
+TODO documentation des `tei:citeStructure`
+
+```xml
+<encodingDesc>
+  <refsDecl>
+    <citeStructure unit="chapter" match="/TEI/text/body/div" use="position()">
+      <citeData use="head" property="dc:title"/>
+    </citeStructure>
+  </refsDecl>
+</encodingDesc>
+```
 
 
 #### Ajout d’une collection thématique
@@ -144,12 +159,6 @@ Exemples :
 ```
 bash basex -b srcPath=/path/to/csv ../webapp/dots/scripts/4_ADD_Transverse_collections.xq 
 ```
-
-
-```
-bash basex -b srcPath=/Users/bolsif/Documents/enc/corpus/dots_documentation/data_test/periodiques/encpos_by_abstract/metadata/custom_collections.tsv ../webapp/dots/scripts/4_ADD_Transverse_collections.xq
-```
-
 
 
 ### Cas 2. Un article est un fragment
@@ -218,30 +227,7 @@ Dir Project (exemple: ENCPOS)
 ```
 
 
-#### Synopsis
 
-```
-cd path/to/basex/bin
-bash basex ../webapp/dots/scripts/dots_db_init.xq
-bash basex -b dbName=encpos -b projectDirPath=/Users/bolsif/Documents/enc/corpus/dots/data_test/ENCPOS ../webapp/dots/scripts/project_db_init.xq
-bash basex -b dbName=encpos -b topCollectionId=ENCPOS ../webapp/dots/scripts/project_registers_create.xq
-bash basex -b dbName=encpos ../webapp/dots/scripts/dots_switcher_update.xq
-```
-
-VINCENT
-
-```
-cd /Applications/basex/bin
-
-bash basex ../webapp/dots/scripts/dots_db_init.xq
-
-bash basex -b dbName=encpos-c2 -b projectDirPath=/Users/bolsif/Documents/enc/corpus/dots_documentation/data_test/periodique_positions/positions_by_volume ../webapp/dots/scripts/project_db_init.xq
-
-bash basex -b dbName=encpos-c2 -b topCollectionId=ENCPOS_c2 ../webapp/dots/scripts/project_registers_create.xq
-
-bash basex -b dbName=encpos-c2 ../webapp/dots/scripts/dots_switcher_update.xq
-
-```
 
 
 Delete
