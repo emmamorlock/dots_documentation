@@ -1,13 +1,3 @@
-!!!! MAPPING RELATIVE PATHS!
-
-Multiple collections => seulement 2!
-
-- Pas listé sur la coll racine
-- Les membres ne sont pas listés
-- PB avec data/ path ????
-
-Que se passe si pas de sous-dossiers in data/ ?
-
 # Installer DoTS
 
 **1. BaseX**
@@ -44,8 +34,11 @@ La structure de `webapp/dots` est la suivante :
 
 	dots/
 		api/
-		lib/				# anciennement builder et db : les modules xqm
-		scripts/			# anciennement manage : des utilitaires
+		lib/				
+		schema/
+		scripts/	
+		globals.xqm
+		README.md
 
 
 
@@ -100,20 +93,22 @@ NB. Idéalement le dossier de dépôt est le dossier de travail.
 			…
 
 
-- Racine du projet – `nom_projet/`. Le nom de ce dossier est libre. Au chargement en base, vous pourrez spécifier le nom de la base de données BaseX, l’identifiant DTS attribué à la collection racine ainsi que lui attribuer un titre.
+- Racine du projet – `nom_projet/`. Le nom de ce dossier est libre. Au chargement en base, vous pourrez spécifier le nom de la base de données BaseX, et l’identifiant DTS attribué à la collection racine. Vous pourrez aussi lui attribuer un titre.
 
 - Les documents XML/TEI – `data/`. Ce dossier est **obligatoire**. Il contient les sources XML/TEI de votre projet organisées selon la hiérarchie de votre choix. Cette hiérarchie représente les collections par défaut de votre projet. Par exemple, ici, les documents `file_1.xml` et `file_2.xml` appartiennent à la collection `collection_1`.
 
-- Les métadonnées – `metadata/`. Ce dossier est **optionnel**. TODO
+- Les métadonnées – `metadata/`. Ce dossier est **optionnel**. S'il est présent, il doit contenir *a minima* un document XML `dots_metadata_mapping.xml` qui permet de déclarer finement où se trouvent les métadonnées de collections et / ou de documents. Ces métadonnées peuvent venir des documents TEI, en déclarant des XPath, mais aussi de fichiers TSV, en l'indiquant dans `dots_metadata_mapping.xml`. Ces fichiers doivent être présents dans le dossier `metadata/`.
 
-- `tei:citeStructure`. TODO documenter l’usage de cet élément pour la définition des fragments
+- `tei:citeStructure`. L'usage de cet élément TEI ([https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html](https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html)) est facultatif. Il est cependant nécessaire si vous souhaitez accéder aux fragments de votre choix dans les documents.
 
 
 ## Exemples
 
 La structuration du *dossier de dépôt* reflète la structure éditoriale du projet.
 
-TODO: développer
+À l'intérieur du dossier `data/`, vous pouvez organiser vos documents en collections et sous-collections (ou laisser vos documents "à plat"). Le nom des fichiers est utilisé comme identifiant de la collection. Par défaut, le nom du dossier sert aussi de titre de collection. Il est recommander de déclarer dans un fichier TSV le titre des collections, et éventuellement toutes les métadonnées de votre choix.
+
+Pour les documents, son titre et son identifiant sont par défaut le nom du fichier (sans `.xml`). Si le document TEI dispose d'un attribut `@xml:id` sur l'élément racine `TEI`, c'est cet attribut qui est utilisé comme identifiant.
 
 **Liens au cookbook :**
 
@@ -136,7 +131,7 @@ cd path/to/basex/bin
 bash basex ../webapp/dots/scripts/dots_db_init.xq
 ```
 
-TODO Doc
+Cette première commande permet d'initialiser la base de données dots. Elle permet de relier chaque ressource identifiée à sa **base de données projet** d'appartenance.
 
 ## Création de la base de données projet
 
@@ -146,16 +141,18 @@ cd path/to/basex/bin
 bash basex -b dbName=db_name -b projectDirPath=/path/to/dossier/de/depot ../webapp/dots/scripts/project_db_init.xq
 ```
 
+Cette commande permet de créer automatique la **base de données projet**.
 On doit spécifier les arguments suivants :
 
 - `dbName` : nom de la base de données BaseX du projet
 - `projectDirPath` : chemin absolu vers le dossier de dépôt du projet
 
-La base de données du projet est créée en conservant la structure du paquet de dépôt en collections et sous-collection par défaut. Mais il est d’inscrire ces documents dans d’autres collections.
+La base de données du projet est créée en conservant la structure du paquet de dépôt en collections et sous-collection par défaut. Mais il est possible dans un second temps d’inscrire ces documents dans d’autres collections.
 
 
 ## Création des registres du projet
 
+Cette commande permet de créer les registres dots dans la base de données projet. Ce sont ces registres qui fournissent les éléments de réponse au résolveur.
 
 ```bash
 bash basex -b dbName=db_name -b topCollectionId=top_collection_id ../webapp/dots/scripts/project_registers_create.xq
@@ -193,8 +190,7 @@ Et voilà. Les ressources de votre projet sont décrites et accessibles via les 
 bash basex -b srcPath=/path/to/custom_collections.tsv ../webapp/dots/scripts/create_custom_collections.xq 
 ```
 
-TODO documentation de `custom_collections.tsv`
-
+Le fichier ``custom_collections.tsv` illustre comment créer de nouvelles collections et lier des documents (déjà existants) à ces collections.
 
 
 ## Supprimer les registres DoTS d’un projet
