@@ -32,7 +32,7 @@ racine
 ```
 
 Pour la gestion et l’édition de vos sources XML/TEI vous pouvez bien entendu organiser le dossier comme bon vous semble.
-Mais pour le chargement en base, le dossier de dépôt DoTS explicite vos choix documentaires. POur la publication d’un périodique,
+Mais pour le chargement en base, le dossier de dépôt DoTS explicite vos choix documentaires. Pour la publication d’un périodique,
 
 - les articles (ici les positions de thèse) peuvent être traités comme des documents (cas 1)
 - les articles (ici les positions de thèse) peuvent être traités comme le fragment d’un volume (cas 2)
@@ -73,23 +73,23 @@ Le corpus de test est disponible : [https://github.com/chartes/dots_documentatio
 ```
 Dir Project
 
-├── /ENCPOS (collection - projet)
-│    ├── /data
-│        ├── /ENCPOS_1849 (collection)
-│            ├── ENCPOS_1849_01.xml (document)
-│            ├── ENCPOS_1849_02.xml (document)
-│            ├── ENCPOS_1849_03.xml (document)
-│            ├── (...)
-│        ├── /ENCPOS_1972 (collection)
-│            ├── ENCPOS_1972_01.xml (document)
-│            ├── ENCPOS_1972_02.xml (document)
-│            ├── ENCPOS_1972_03.xml (document)
-│            ├── (...)
-│    ├── /metadata
-│        ├── custom_collections.tsv
-│        ├── default_collections_titles.tsv
-│        ├── documents_metadata.tsv
-│        ├── dots_metadata_mapping.xml
+> ENCPOS/                           collection racine
+  > data/
+    > ENCPOS_1849/                  collection
+      > ENCPOS_1849_01.xml          document
+      > ENCPOS_1849_02.xml          document
+      > ENCPOS_1849_03.xml          document
+      > (...)
+    > ENCPOS_1972/                  collection
+      > ENCPOS_1972_01.xml          document
+      > ENCPOS_1972_02.xml          document
+      > ENCPOS_1972_03.xml          document
+      > (...)
+  > metadata/
+    > custom_collections.tsv
+    > default_collections_titles.tsv
+    > documents_metadata.tsv
+    > dots_metadata_mapping.xml
 ```
 
 #### Dossier `data/`
