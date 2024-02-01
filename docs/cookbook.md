@@ -129,7 +129,7 @@ Exemples :
 ```xml
 <dc:title
   format="csv"
-  source="/dots/titles.csv"
+  source="./default_collections_titles.tsv"
   resourceId="id"
   value="title"
   scope="collection"/>

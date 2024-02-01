@@ -7,3 +7,9 @@ basex % bin/basexhttp
 ```
 
 consulter [http://0.0.0.0:8080/api/dts/](http://0.0.0.0:8080/api/dts/)
+
+## Endpoint **Collections**
+
+## Endpoint **Navigation**
+
+## Endpoint **Document**
