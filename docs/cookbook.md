@@ -73,17 +73,17 @@ Le corpus de test est disponible : [https://github.com/chartes/dots_documentatio
 ```
 Dir Project
 
-> ENCPOS/                           collection racine
+> ENCPOS/                           #collection racine
   > data/
-    > ENCPOS_1849/                  collection
-      > ENCPOS_1849_01.xml          document
-      > ENCPOS_1849_02.xml          document
-      > ENCPOS_1849_03.xml          document
+    > ENCPOS_1849/                  #collection
+      > ENCPOS_1849_01.xml          #document
+      > ENCPOS_1849_02.xml          #document
+      > ENCPOS_1849_03.xml          #document
       > (...)
-    > ENCPOS_1972/                  collection
-      > ENCPOS_1972_01.xml          document
-      > ENCPOS_1972_02.xml          document
-      > ENCPOS_1972_03.xml          document
+    > ENCPOS_1972/                  #collection
+      > ENCPOS_1972_01.xml          #document
+      > ENCPOS_1972_02.xml          #document
+      > ENCPOS_1972_03.xml          #document
       > (...)
   > metadata/
     > custom_collections.tsv
@@ -215,15 +215,15 @@ Le corpus de test : [positions\_by\_volume](positions_by_volume)
 ```
 Dir Project (exemple: ENCPOS)
 
-├── /positions_by_volume (collection - projet)
-│    ├── /data
-│        ├── /ENCPOS_1849_c2.xml (document)
-│        ├── /ENCPOS_1971_c2.xml (document)
-│        ├── /ENCPOS_1972_c2.xml (document)
-│    ├── /metadata
-│        ├── dots_metadata_mapping.xml
-│        ├── encpos.tsv
-│        ├── titles.csv
+  > /positions_by_volume (collection - projet)
+    >/data
+      > /ENCPOS_1849_c2.xml (document)
+      > /ENCPOS_1971_c2.xml (document)
+      > /ENCPOS_1972_c2.xml (document)
+    > /metadata
+      > dots_metadata_mapping.xml
+      > encpos.tsv
+      > titles.csv
 ```
 
 

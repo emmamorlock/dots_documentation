@@ -55,11 +55,11 @@ Un peu de vocabulaire.
 
 **Dossier de dépôt**. Pour être correctement chargé en base avec les outils DoTS, un *projet* doit être structuré dans un dossier conformément aux attendus de DoTS. Ce dossier est désigné dans la documentation par l’expression "dossier de dépôt".
 
-**Base de données projet** ou **DB projet**. Chaque *projet* (chaque collection racine) est importé sous la forme d’une base de données BaseX. Les projets *Correspondance* et *Théâtre* sont chargés sous la forme de 2 bases de données distinctes, par exemple respectivement `correspondance` et `theatre`.
+**Base de données projet** ou **DB projet**. Chaque *projet* (chaque collection DTS de premier niveau) est importé sous la forme d’une base de données BaseX. Les projets *Correspondance* et *Théâtre* sont chargés sous la forme de 2 bases de données distinctes, par exemple respectivement `correspondance` et `theatre`.
 
 ## Workflow
 
-TODO Diagramme
+![Screenshot](img/dots_workflow.png)
 
 ```
 project_working_dir/
