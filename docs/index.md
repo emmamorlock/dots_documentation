@@ -148,9 +148,12 @@ Il peut être utile de déclarer une métadonnée dont le contenu ne diffère pa
 	value="promotion_year"/>
 ```
 Exemple de TSV
+
 |id|promotion_year|
 |--|--------------|
 |ENCPOS_1849|1849|
+|ENCPOS_1971|1971|
+|ENCPOS_1972|1972|
 
 - `<propriété/>` : le nom de l'élément permet de définir la propriété attendue en réponse de la requête API. Dans l'exemple, la propriété est la date en dublin core.
 - `@scope` : la valeur attendue est *collection* ou *document*, selon la porté de la métadonnée.
@@ -282,7 +285,7 @@ bash basex -b dbName=db_name  -b option=true / false../webapp/dots/scripts/dots_
 
 Cette commande permet de "nettoyer" le switcher de la db `dots` en supprimant toutes les ressources qui appartiennent à la *base de données projet*. Elle permet aussi de supprimer la *base de données projet* si l'option est `true` ; elle se contente sinon de supprimer ses registres dots.
 
-**Attention :** après avoir utilisé cette commande, le résolveur `dots` ne fournit plus de réponse d'API pour ce *projet*.
+**NB. après avoir utilisé cette commande, le résolveur `dots` ne fournit plus de réponse d'API pour ce *projet*.**
 
 On doit spécifier les arguments suivants :
 
