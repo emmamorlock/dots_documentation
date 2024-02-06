@@ -1,8 +1,25 @@
+site_name: My Docs
 site_name: DoTS documentation
 site_url: https://dots.documentation.com/
 nav:
-    - Home: index.md
-    - Resolver: resolver.md
-    - Cookbook: cookbook.md
-    - License: license.md
-# theme: readthedocs
+    - DoTS: index.md
+    - Publier un corpus: publishing-worflow.md
+    - Dossier de dépôt: dots-project-folder.md
+    - DTS API: api.md
+    - DoTS Cookbook: cookbook.md
+    - DTS Specification: https://distributed-text-services.github.io/specifications/
+
+theme:
+  name: material
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      url_download: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences

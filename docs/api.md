@@ -8,6 +8,9 @@ basex % bin/basexhttp
 
 consulter [http://0.0.0.0:8080/api/dts/](http://0.0.0.0:8080/api/dts/)
 
+
+TODO: Swagger Doc
+
 ## Endpoint **Collections**
 
 ## Endpoint **Navigation**
