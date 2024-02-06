@@ -21,6 +21,9 @@ Cette réponse fournit les points d'entrée pour chacun des endpoints DTS. DoTS 
 - [http://localhost:8080/api/dts/navigation](http://localhost:8080/api/dts/navigation)
 - [http://localhost:8080/api/dts/document](http://localhost:8080/api/dts/document)
 
+
+TODO: Swagger Doc
+
 ## Endpoint **Collections**
 
 - Documentation : [https://distributed-text-services.github.io/specifications/Collections-Endpoint.html](https://distributed-text-services.github.io/specifications/Collections-Endpoint.html)
