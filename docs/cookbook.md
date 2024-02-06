@@ -146,7 +146,10 @@ Exemples :
 
 #### Déclaration des fragments
 
-TODO documentation des `tei:citeStructure`
+L'élément `<citeStructure>` ( [https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html](https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html) ) est facultatif.
+Il permet de déclarer la structure du document TEI et de retrouver des fragments.
+
+Exemple d'une structure hiérarchique d'un document à un niveau (un chapitre = un fragment) :
 
 ```xml
 <encodingDesc>
@@ -161,9 +164,18 @@ TODO documentation des `tei:citeStructure`
 
 #### Ajout d’une collection thématique
 
+Dans un second temps, il est possible de créer de nouvelles collections et de lier des documents déjà présents dans la base à ces collections nouvellement créées.
+Ainsi, un même document peut appartenir à plusieurs collections.
+
+Il est nécessaire pour cela de préparer un tableur TSV sur le modèle de `custom_collections.tsv`.
+
 ```
 bash basex -b srcPath=/path/to/csv ../webapp/dots/scripts/4_ADD_Transverse_collections.xq 
 ```
+
+Argument à spécifier pour lancer la commande :
+
+- `srcPath` : chemin vers le tableur TSV
 
 
 ### Cas 2. Un article est un fragment
@@ -197,7 +209,7 @@ Il convient de déclarer chacune de ces unités documentaires.
 
 **Documents**. Les documents correspondent aux fichiers XML/TEI.
 
-**Fragments**. La hiérarchia des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
+**Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
 
 ```xml
 <encodingDesc>
@@ -215,7 +227,7 @@ Il convient de déclarer chacune de ces unités documentaires.
 
 #### Corpus de test
 
-Le corpus de test : [positions\_by\_volume](positions_by_volume)
+Le corpus de test : [https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume](https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume)
 
 ```
 Dir Project (exemple: ENCPOS)
@@ -231,12 +243,27 @@ Dir Project (exemple: ENCPOS)
       > titles.csv
 ```
 
+#### Dossier `data/`
 
+Le dossier `/data` regroupe les fichiers TEI de la collection projet : ici, le document ENCPOS_1849.xml, par exemple, regroupe toutes les positions de 1849.
+Chaque position est dans ce cas un fragment du document.
 
+#### Dossier `metadata/`
 
+Ce dossier contient les métadonnées descriptives des documents: le document `default_resources_titles.tsv` permet de lister les titres de la collection racine et des documents.
 
-Delete
+#### Déclaration des fragments
 
-```
-bash basex -b dbName=encpos-c2 ../webapp/dots/scripts/dots_registers_delete.xq
+L'élément `<citeStructure>` ( [https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html](https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html) ) est utilisé pour déclarer la structure d'un document.
+  Il est possible, comme dans cet exemple, de déclarer une structure imbriquée: les chapitres dans les positions de thèse.
+
+```xml
+<refsDecl>
+  <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
+    <citeData use="head" property="dc:title"/>
+    <citeStructure unit="chapter" match="div" use="position()">
+      <citeData use="head" property="dc:title"/>
+    </citeStructure>
+  </citeStructure>
+</refsDecl>
 ```
