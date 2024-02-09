@@ -1,20 +1,49 @@
 # DoTS
 
-## Qu’est-ce que c’est quoi ?
+## What is DTS?
 
-Implémentation method GET de DTS.
+The Distributed Text Services (DTS) Specification defines an API for working with collections of text as machine-actionable data.
 
-## Installation
+Publishers of digital text collections can use the DTS API to help them make their textual data Findable, Accessible, Interoperable and Reusable (FAIR).
 
-**1. BaseX**
-
-Télécharger BaseX (>= 10.0): [https://basex.org/download/](https://basex.org/download/)
-
-- Privilégier le `ZIP Package`
-- Pré-requis : [https://docs.basex.org/wiki/Startup#Startup](https://docs.basex.org/wiki/Startup#Startup)
+[https://distributed-text-services.github.io/specifications](https://distributed-text-services.github.io/specifications)
 
 
-**2. DoTS**
+## What is DoTS?
+
+DoTS is a XQuery implementation of DTS using a [BaseX](https://basex.org/) backend.
+
+!!! Note
+
+    **DoTS supports only DTS GET requests** for browsing collections, document retrieval and navigation.
+
+## Capabilities
+
+Using DoTS, you can
+
+- with the DTS Collections endpoint:
+	- Retrieve lists of collection members.
+	- Retrieve metadata about individual collection items.
+- with the DTS Navigation endpoint:
+	- Retrieve lists of citeable passages within a text.
+	- Retrieve lists of citeable passages within a text as groups of client-defined sizes (e.g. groups of 10 lines).
+	- Retrieve metadata about the citation structure of a document.
+- with the DTS Document endpoint:
+	- Retrieve a single text passage at any level of the citation hierarchy.
+	- Retrieve a range of text passages with a clearly defined start and end passage.
+	- Retrieve an entire text.
+
+## Install
+
+### BaseX
+
+Download BaseX (>= 10.0): [https://basex.org/download/](https://basex.org/download/)
+
+- Prefer `ZIP Package`
+- Requirements : [https://docs.basex.org/wiki/Startup#Startup](https://docs.basex.org/wiki/Startup#Startup)
+
+
+### DoTS
 
 
 ```Bash
@@ -25,7 +54,7 @@ cd path/to/basex/webapp
 git clone https://github.com/chartes/dots.git
 ```
 
-La structure de votre instance BaseX doit être la suivante :
+The structure of your BaseX should be as follows:
 
 
 	basex/				# BaseX root dir.
@@ -36,7 +65,7 @@ La structure de votre instance BaseX doit être la suivante :
 		...				# Other.
 
 
-
+<!--
 La structure de `webapp/dots` est la suivante :
 
 	dots/
@@ -46,4 +75,13 @@ La structure de `webapp/dots` est la suivante :
 		scripts/		# Projects db management cmd.
 		globals.xqm		# Dots resources default paths.
 		README.md
+-->
 
+## Start DTS resolver
+
+```Bash
+cd path/to/basex/
+bin/basexhttp
+```
+
+By default, the base DTS API enpoint is available at [http://localhost:8080/api/dts/](http://localhost:8080/api/dts/).
