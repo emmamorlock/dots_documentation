@@ -170,7 +170,7 @@ Ainsi, un même document peut appartenir à plusieurs collections.
 Il est nécessaire pour cela de préparer un tableur TSV sur le modèle de `custom_collections.tsv`.
 
 ```
-bash basex -b srcPath=/path/to/csv ../webapp/dots/scripts/4_ADD_Transverse_collections.xq 
+bash basex -b srcPath=/path/to/csv ../webapp/dots/scripts/create_custom_collections.xq 
 ```
 
 Argument à spécifier pour lancer la commande :
