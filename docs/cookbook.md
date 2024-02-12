@@ -12,11 +12,11 @@ Un périodique est une publication régulière et collective, par exemple une re
 
 Nous prenons ici l’exemple de la publication des positions de thèses de l’École des chartes. Une *position* est un résumé de la thèse défendue. Depuis 1849, chaque année un recueil des positions est publié. L’ensemble de ces positions est consultable en ligne : [https://theses.chartes.psl.eu/](https://theses.chartes.psl.eu/).
 
-
+<!--
 ```JSON title="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
 --8<-- "https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
 ```
-
+-->
 
 ### Définition du modèle documentaire
 
@@ -75,27 +75,28 @@ encpos							collection (project root)
 
 Le corpus de test est disponible : [https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract](https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract)
 
-```
-Dir Project
 
-> ENCPOS/                           #collection racine
-  > data/
-    > ENCPOS_1849/                  #collection
-      > ENCPOS_1849_01.xml          #document
-      > ENCPOS_1849_02.xml          #document
-      > ENCPOS_1849_03.xml          #document
-      > (...)
-    > ENCPOS_1972/                  #collection
-      > ENCPOS_1972_01.xml          #document
-      > ENCPOS_1972_02.xml          #document
-      > ENCPOS_1972_03.xml          #document
-      > (...)
-  > metadata/
-    > custom_collections.tsv
-    > default_collections_titles.tsv
-    > documents_metadata.tsv
-    > dots_metadata_mapping.xml
-```
+!!! info "Structure du dossier de dépôt"
+
+	```
+	ENCPOS/								# collection racine
+		data/
+			ENCPOS_1849/				# collection
+				ENCPOS_1849_04.xml		# document
+				ENCPOS_1849_08.xml
+			ENCPOS_1971/
+				ENCPOS_1971_09.xml
+				ENCPOS_1971_12.xml
+				ENCPOS_1971_14.xml
+			…
+		metadata/						# métadonnées des collections et des documents
+			custom_collections.tsv
+			default_collections_titles.tsv
+			documents_metadata.tsv
+			dots_metadata_mapping.xml
+		README.md
+	```
+
 
 #### Dossier `data/`
 

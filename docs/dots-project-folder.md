@@ -109,8 +109,7 @@ Pour un document, l’identifiant retenu par ordre de priorité est :
 Pour un document, le titre (`dc:title`) retenu par ordre de priorité est :
 
 1. la valeur renseignée dans `dots_metadata_mapping.xml` (optionnel) ;
-1. la valeur renseignée dans le `teiHeader`, par défaut `titleStmt/title` (optionnel) ;
-1. le nom du fichier (sans l’extension `.xml`).
+1. la valeur renseignée dans le `teiHeader`, par défaut `titleStmt/title` (optionnel).
 
 
 ### Autres collections
@@ -121,9 +120,9 @@ La description de ces nouvelles collections – avec la liste de leurs documents
 
 
 
-| |dbName|collectionId|title|parentId|documentIds|description|
+| |dbName|collectionId|dc:title|parentId|documentIds|dc:description|
 |-|------|------------|-----|---------|-----------|-----------|
-|**Description**|nom de la db|id de la collection|`dc:title`|id de la collection parente|liste des ids des documents|`dc:description`|
+|**Description**|nom de la db du projet|id de la collection|`dc:title`|id de la collection parente|liste des ids des documents|`dc:description`|
 |**Example**|theater|comedy|Les comédies classiques|theatre-genre|avare\|illusion-comique\|plaideurs|Les comédies de Corneille, Molière et Racine|
 	
 
@@ -181,7 +180,6 @@ Titre de document (`dc:title`) :
 1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir surcharge)
 1. valeur de `/TEI/teiHeader/fileDesc/titleStmt/title[@type='main']`
 1. valeur de `/TEI/teiHeader/fileDesc/titleStmt/title[1]`
-1. nom du fichier (sans l’extension `.xml`)
 
 
 **Pour un passage**, DTS impose la déclaration d’un identifiant. DoTS attribue automatiquement aux passages un identifiant selon la déclaration faite par l’éditeur dans l’élément `citeStructure`. L’identifiant est copié ou calculé selon la valeur de l’attribut `citeStructure/@use`.
@@ -298,7 +296,7 @@ Les métadonnées des documents et des collections peuvent être déportées dan
 	<ns:property
 		scope="collection|document"
 		format="tsv"
-		source="path/to/tsv_file"
+		source="./metadata_file.tsv"
 		resourceId="resourceId_column-header"
 		value="value_column-header"/>
 	```
@@ -335,7 +333,7 @@ Les métadonnées des documents et des collections peuvent être déportées dan
 
 #### Métadonnées inscrites dans la source XML/TEI
 
-Les métadonnées d’un document peuvent être inscrites dans son teiHeader. `dots_metadata_mapping.xml` permet de les appeler et spécifiant un chemin XPath.
+Les métadonnées d’un document peuvent être inscrites dans son `teiHeader`. `dots_metadata_mapping.xml` permet de les appeler et spécifiant un chemin XPath.
 
 
 !!! abstract "Template"
@@ -347,12 +345,12 @@ Les métadonnées d’un document peuvent être inscrites dans son teiHeader. `d
 	```
 
 
-!!! example "Exemple. Appel du titre (`dc:title`) des documents"
+!!! example "Exemple. Appel de l’éditeur (`dc:publisher`) des documents"
 
 	```xml
-	<dc:title 
+	<dc:publisher 
 		scope="document" 
-		xpath="//titleStmt/title[@type = 'main' or position() = 1]"/>
+		xpath="/TEI/teiHeader/fileDesc/publicationStmt/publisher"/>
 	```
 
 |attribut|définition|valeur|commentaire|
@@ -361,11 +359,23 @@ Les métadonnées d’un document peuvent être inscrites dans son teiHeader. `d
 |`@xpath`|chemin de la métadonnée|||
 
 
-#### Synthèse
+#### Typer les valeurs
 
-TODO Tableau récap (après validation des précédents)
+
+`@type`. Typer les valeurs appelées : l'attribut `@type` peut prendre la valeur *number* ou *boolean* selon les besoins.  
+
+!!! warning
+
+	Si la valeur ne correspond pas au type demandé, la réponse d'API affiche une erreur.
+
+
+
+#### Autres fonctionnalités
 
 D'autres fonctionnalités sont par ailleurs disponibles dans tous les cas de figure.
-Il est notamment possible de typer les métadonnées : l'attribut `@type` peut prendre la valeur *number* ou *boolean* selon les besoins.
-**NB. Attention cependant: si la valeur ne correspond pas au type demandé, la réponse d'API affiche une erreur.**
-Enfin, un mécanisme de préfixage et de suffixage est disponible pour compléter au besoin les métadonnées des TSV. Les attributs `@prefix` et `@suffix` peuvent être utilisés.
+
+
+`@prefix`. Ajouter un préfixe à la valeur appelée. EXEMPLE !
+
+
+`@suffix`. Ajouter un suffixe à la valeur appelée. EXEMPLE !

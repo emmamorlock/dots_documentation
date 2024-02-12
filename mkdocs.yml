@@ -5,9 +5,8 @@ nav:
     - DoTS: index.md
     - Publier un corpus: publishing-worflow.md
     - Dossier de dépôt: dots-project-folder.md
-    - DTS API: api.md
     - DoTS Cookbook: cookbook.md
-    - DTS Specification: https://distributed-text-services.github.io/specifications/
+    - DTS API: api.md
 
 theme:
   name: material
