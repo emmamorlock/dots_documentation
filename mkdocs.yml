@@ -3,7 +3,7 @@ site_name: DoTS documentation
 site_url: https://dots.documentation.com/
 nav:
     - DoTS: index.md
-    - Publier un corpus: publishing-worflow.md
+    - Publier un corpus: publishing-workflow.md
     - Dossier de dépôt: dots-project-folder.md
     - DoTS Cookbook: cookbook.md
     - DTS API: api.md

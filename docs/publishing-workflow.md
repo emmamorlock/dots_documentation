@@ -33,7 +33,7 @@ Cette page décrit le *worflow* de publication, les recommandations DoTS de stru
 
 ### Préparer le dossier de dépôt
 
-Un dossier de dépôt (cf. la page [Dossier de dépôt](dots-project-folder.md/#structure-du-dossier-de-depot) pour plus d'informations) contient :
+Un [Dossier de dépôt](dots-project-folder.md) contient :
 
 - obligatoirement les sources XML/TEI du projet (dossier `data/`), organisées selon la hiérarchie de votre choix,
 - optionnellement les métadonnées décrivant les collections et les documents (dossier `metadata/`), avec *a minima* le document XML `dots_metadata_mapping.xml`,
@@ -67,7 +67,7 @@ Un dossier de dépôt (cf. la page [Dossier de dépôt](dots-project-folder.md/#
 - Les métadonnées – `metadata/`. Ce dossier est **optionnel**. S'il est présent, il doit contenir *a minima* un document XML `dots_metadata_mapping.xml` qui permet de déclarer finement où se trouvent les métadonnées de collections et / ou de documents. 
 -->
 
-### Préparer les fragments
+### Préparer les [passages](dots-project-folder/#passages)
 
 L'utilisateur peut décrire la structure de chacun de ses documents et définir l'accès aux fragments à l'intérieur.
 
@@ -120,7 +120,7 @@ La base de données *projet* est créée en conservant la structure du paquet de
 ???+ note
 
 	**La base de données du *projet* ne DOIT PAS être ouverte dans le GUI BaseX.**
-	
+
 ```Bash
 bash basex -b dbName=db_name -b topCollectionId=top_collection_id ../webapp/dots/scripts/project_registers_create.xq
 ```

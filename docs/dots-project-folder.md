@@ -36,6 +36,8 @@ Des [cookbooks](./cookbook.md) illustrent la mise en œuvre de ces recommandatio
 
 - `metadata/`: les métadonnées. Ce dossier est **optionnel**. Si présent, il doit contenir *a minima* le document XML `dots_metadata_mapping.xml` qui permet de déclarer l’accès aux métadonnées des collections et/ou des documents. 
 
+- `README.md`. Ce fichier est optionnel. Il permet de documenter le dossier de dépôt.
+
 
 ## Déclarer la structure éditoriale du projet
 
@@ -89,7 +91,7 @@ Vous pouvez structurer vos documents en collections et sous-collections hiérarc
 	```
 
 
-
+<!--
 #### Id et titre des collections
 
 **Le nom du dossier de collection est retenu comme identifiant de la collection.**  
@@ -110,7 +112,7 @@ Pour un document, le titre (`dc:title`) retenu par ordre de priorité est :
 
 1. la valeur renseignée dans `dots_metadata_mapping.xml` (optionnel) ;
 1. la valeur renseignée dans le `teiHeader`, par défaut `titleStmt/title` (optionnel).
-
+ -->
 
 ### Autres collections
 
@@ -118,18 +120,13 @@ Avec DoTS, un même document peut-être assignés à différentes collections.
 
 La description de ces nouvelles collections – avec la liste de leurs documents – doit être structurée dans un TSV conforme au modèle suivant.
 
-
-
 | |dbName|collectionId|dc:title|parentId|documentIds|dc:description|
 |-|------|------------|-----|---------|-----------|-----------|
 |**Description**|nom de la db du projet|id de la collection|`dc:title`|id de la collection parente|liste des ids des documents|`dc:description`|
 |**Example**|theater|comedy|Les comédies classiques|theatre-genre|avare\|illusion-comique\|plaideurs|Les comédies de Corneille, Molière et Racine|
 	
 
-
-
 ### Passages
-
 
 Le endpoint `Navigation` permet de lister les passages référencés d’un document. Le enpoint `Document` permet d’en afficher le contenu.
 
@@ -154,42 +151,52 @@ Cette déclaration est **optionnelle**.
 	```
 
 
-
 ## Déclarer les métadonnées des ressources du projet
 
 ### Métadonnées obligatoires
 
 **Pour une collection et un document**, DTS impose la déclaration d’un identifiant et d’un titre. Cependant, pour publier un projet, DoTS n’a besoin d’aucune métadonnée et attribue automatiquement aux ressources un identifiant et un titre défini selon cet ordre de priorité.
 
-Identifiant de collection :
+#### Pour une collection
+
+Identifiant :
 
 1. nom du dossier de collection dans `data/`
 
-Titre de collection (`dc:title`) :
+???+ note
+	
+	Il est donc recommandé de ne pas utiliser d’espace ou de diacritique pour le nommage de ces dossiers. Un plan de nommage de ces dossiers de collection peut utilement documenter un dossier de dépôt dans le `README.md`.
+
+Titre (`dc:title`) :
 
 1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir surcharge)
 1. nom du dossier de collection dans `data/`
 
-Identifiant de document :
+???+ note
+	
+	Il est recommandé de déclarer dans un fichier TSV le titre des collections (ainsi que toutes les métadonnées utiles à leur description).
+
+#### Pour un document
+
+Identifiant :
 
 1. valeur de l’attribut `/TEI/@xml:id` du fichier
 1. nom du fichier (sans l’extension `.xml`)
 
-Titre de document (`dc:title`) :
+Titre (`dc:title`) :
 
 1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir surcharge)
 1. valeur de `/TEI/teiHeader/fileDesc/titleStmt/title[@type='main']`
 1. valeur de `/TEI/teiHeader/fileDesc/titleStmt/title[1]`
 
 
-**Pour un passage**, DTS impose la déclaration d’un identifiant. DoTS attribue automatiquement aux passages un identifiant selon la déclaration faite par l’éditeur dans l’élément `citeStructure`. L’identifiant est copié ou calculé selon la valeur de l’attribut `citeStructure/@use`.
+####Pour un passage
+
+DTS impose la déclaration d’un identifiant. DoTS attribue automatiquement aux passages un identifiant selon la déclaration faite par l’éditeur dans l’élément `citeStructure`. L’identifiant est copié ou calculé selon la valeur de l’attribut `citeStructure/@use`.
 
 !!! warning
 
     Pour l’attribution des identifiants de passage déclarés en valeur de `citeStructure/@use`, DoTS prends en charge la **seule** valeur `@xml:id`, qui garantit l’unicité de cette identification des passages dans le document. DoTS ne traite pas les autres valeurs possibles de `@use`, telles que `position()` ou `@n`, et attribue automatiquement un identifiant aux passages selon leur ordre d’inscription dans le registre DoTS.
-
-
-
 
 
 ### Surcharge et métadonnées optionnelles
@@ -197,7 +204,7 @@ Titre de document (`dc:title`) :
 Pour les collections et les documents, le fichier `metadata/dots_metadata_mapping.xml` permet :
 
 - de surcharger le titre (`dc:title`) attribué par défaut par DoTS ;
-- d’appeler optionnellement toutes les métadonnées souhaitées. Et ces métadonnées peuvent être inscrites dans le `teiHeader` des documents et/ou déportées dans un tableur.
+- d’appeler optionnellement toutes les métadonnées souhaitées. Et ces métadonnées peuvent être inscrites directement dans le fichier `metadata/dots_metadata_mapping.xml` et/ou dans le `teiHeader` des documents et/ou déportées dans un tableur.
 
 
 !!! example "dots_metadata_mapping.xml"
@@ -217,30 +224,18 @@ Pour les collections et les documents, le fichier `metadata/dots_metadata_mappin
 	    <dc:date  scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="promotion_year" type="number"/>
 	    <dc:creator scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="author_fullname_label"></dc:creator>
 	    <dct:creator scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="author_idref_ppn" prefix="https://www.idref.fr/" key="@id"/>
-	    <dct:creator scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="author_dbpedia_id" prefix="https://dbpedia.org/resource/" key="@id"/>
-	    <dct:isVersionOf scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="sudoc_these-record_ppn" prefix="https://www.sudoc.fr/" key="@id"/>
 	    <dct:extent scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="pagination"/>
 	  </mapping>
 	</metadataMap>
 	```
 
-Pour déclarer une métadonnée, il suffit de l’élément avec le préfixe permettant de qualifier son vocabulaire d’appartenance.
-
-L’attribut `@scope` permettent de spécifier le type de ressource décrit.
-
-`@scope`:
-
-- déclarer les ressources décrites.
-- valeurs autorisées: `collection`,`document`
-
+Pour déclarer une métadonnée, c'est le nom de l’élément XML avec le préfixe qui permet de qualifier son vocabulaire d’appartenance. La procédure de déclaration varie ensuite selon le lieu où est inscrite la métadonnée.
 
 Ces métadonnées peuvent être inscrites :
 
 - dans le fichier `dots_metadata_mapping.xml` pour les valeurs communes à l’ensemble des collections ou à l’ensemble des documents.
 - dans un fichier TSV (pour les collections et les documents)
 - dans le fichier XML/TEI (pour les seuls documents)
-
-
 
 #### Métadonnées inscrites dans `dots_metadata_mapping.xml`
 
@@ -333,7 +328,7 @@ Les métadonnées des documents et des collections peuvent être déportées dan
 
 #### Métadonnées inscrites dans la source XML/TEI
 
-Les métadonnées d’un document peuvent être inscrites dans son `teiHeader`. `dots_metadata_mapping.xml` permet de les appeler et spécifiant un chemin XPath.
+Les métadonnées d’un document peuvent être inscrites dans son `teiHeader`. `dots_metadata_mapping.xml` permet de les appeler en spécifiant un chemin XPath.
 
 
 !!! abstract "Template"
@@ -359,23 +354,36 @@ Les métadonnées d’un document peuvent être inscrites dans son `teiHeader`. 
 |`@xpath`|chemin de la métadonnée|||
 
 
-#### Typer les valeurs
+#### Autres fonctionnalités
 
+D'autres fonctionnalités sont par ailleurs disponibles.
 
-`@type`. Typer les valeurs appelées : l'attribut `@type` peut prendre la valeur *number* ou *boolean* selon les besoins.  
+##### Typage des valeurs
+
+Par défaut, toutes les valeurs des métadonnées sont considérées comme des chaînes de caractère.
+
+Mais il est toujours possible de préciser le type de valeur attendue pour la métadonnée avec l'attribut `@type` : *number* ou *boolean* selon les besoins. 
+
+|attribut|définition|valeur|commentaire|
+|--------|----------|------|-----------|
+| `@type` | type de données | `number` ou `boolean`||
 
 !!! warning
 
 	Si la valeur ne correspond pas au type demandé, la réponse d'API affiche une erreur.
 
+##### Utilisation de valeurs multiples
+
+L'utilisateur peut vouloir plusieurs valeurs pour une même métadonnée. Par exemple, utiliser plusieurs fois la métadonnée `dc:creator` pour pouvoir renvoyer à plusieurs référentiels.
+
+Dans ce cas de figure, il est **obligatoire** d'ajouter un attribut supplémentaire `@key` afin de pouvoir créer une liste de valeurs dans la réponse d'API en JSON.
 
 
-#### Autres fonctionnalités
+##### Concaténation de chaînes de caractères
 
-D'autres fonctionnalités sont par ailleurs disponibles dans tous les cas de figure.
+Il est toujours possible de concaténer une métadonnée avec un préfix et/ou un suffixe, en utilisant simplement les attributs `@prefix` et/ou `@suffix`.
 
-
-`@prefix`. Ajouter un préfixe à la valeur appelée. EXEMPLE !
-
-
-`@suffix`. Ajouter un suffixe à la valeur appelée. EXEMPLE !
+|attribut|définition|valeur|commentaire|
+|--------|----------|------|-----------|
+|`@prefix`| prefix à concaténer avec la métadonnée|||
+|`@suffix`| suffix à concaténer avec la métadonnée |||
