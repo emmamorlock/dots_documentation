@@ -63,10 +63,10 @@ def define_env(env) -> None:
     """
     Hook for macros, variables and filters plugins.
 
-    Args:
-        env (Environment): The Jinja2 environment.
-    Returns:
-        None
+    :param env: the Jinja2 environment.
+    :type env: jinja2.environment.Environment
+    :return: None
+    :rtype: None
     """
 
     @env.macro

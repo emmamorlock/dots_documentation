@@ -1,3 +1,8 @@
+/**
+ * Custom JS for the MKdocs documentation.
+ */
+
+// Listen for the DOMContentLoaded event and hide all card-body elements.
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.card-body').forEach(function (body) {
         body.style.display = 'none';
@@ -8,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+// Functions
+
+/**
+ * Toggle collapse for the card element.
+ * @param headerElement
+ * @returns {Promise<void>}
+ */
 function toggleCollapse(headerElement) {
     const cardBody = headerElement.nextElementSibling;
     const chevron = headerElement.querySelector('.chevron');
@@ -20,6 +33,11 @@ function toggleCollapse(headerElement) {
     }
 }
 
+/**
+ * Fetch data for the collapse element and highlight response from API.
+ * @param collapse
+ * @returns {Promise<void>}
+ */
 function fetchDataForCollapse(collapse) {
     const url = collapse.getAttribute('data-url');
     const cardBody = collapse.querySelector('.card-body');
