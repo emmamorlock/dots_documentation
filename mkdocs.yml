@@ -11,7 +11,16 @@ nav:
 theme:
   name: material
 
+extra_css:
+  - css/custom.css
+  - css/stackoverflow-light.min.css
+
+extra_javascript:
+  - js/custom.js
+  - js/highlight.min.js
+
 plugins:
+      - macros
       - render_swagger:
           allow_arbitrary_locations: true
 

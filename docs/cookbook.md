@@ -12,6 +12,12 @@ Un périodique est une publication régulière et collective, par exemple une re
 
 Nous prenons ici l’exemple de la publication des positions de thèses de l’École des chartes. Une *position* est un résumé de la thèse défendue. Depuis 1849, chaque année un recueil des positions est publié. L’ensemble de ces positions est consultable en ligne : [https://theses.chartes.psl.eu/](https://theses.chartes.psl.eu/).
 
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18")
+}}
+
+
 <!--
 ```JSON title="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
 --8<-- "https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
