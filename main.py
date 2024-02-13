@@ -1,5 +1,6 @@
-"""Define the macros for the plugin.
+"""main.py
 
+Define the Jinja2 variables, macros and filters for extensions components in Mkdocs.
 """
 
 mapping_header_background = {
@@ -58,13 +59,27 @@ background-color: {mapping_header_background[verb_http]} !important;
 """
 
 
-def define_env(env):
+def define_env(env) -> None:
     """
-    This is the hook for the macros plugin to define variables, macros and filters.
+    Hook for macros, variables and filters plugins.
+
+    Args:
+        env (Environment): The Jinja2 environment.
+    Returns:
+        None
     """
 
     @env.macro
-    def macro_collapse_card_api_doc(verb_http, url):
+    def macro_collapse_card_api_doc(verb_http: str, url: str) -> str:
+        """Macro to create a custom HTML collapsable card for the API documentation in Markdown files.
+
+        :param verb_http: verb of the HTTP request (GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD).
+        :type verb_http: str
+        :param url: URL of the API endpoint.
+        :type url: str
+        :return: the HTML collapsable card for the API documentation.
+        :rtype: str
+        """
         verb_http = verb_http.upper()
         return f"""
 <div class="collapse-card" data-url="{url}" style="{set_collapsable_card_style(verb_http=verb_http)}">
