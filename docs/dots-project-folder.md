@@ -362,11 +362,11 @@ D'autres fonctionnalités sont par ailleurs disponibles.
 
 Par défaut, toutes les valeurs des métadonnées sont considérées comme des chaînes de caractère.
 
-Mais il est toujours possible de préciser le type de valeur attendue pour la métadonnée avec l'attribut `@type` : *number* ou *boolean* selon les besoins. 
+Mais il est toujours possible de préciser le type de valeur attendue pour la métadonnée avec l'attribut `@type` : *number*, *boolean* ou *null* selon les besoins. 
 
 |attribut|définition|valeur|commentaire|
 |--------|----------|------|-----------|
-| `@type` | type de données | `number` ou `boolean`||
+| `@type` | type de données | `number`, `boolean` ou `null`||
 
 !!! warning
 
@@ -374,9 +374,9 @@ Mais il est toujours possible de préciser le type de valeur attendue pour la m�
 
 ##### Utilisation de valeurs multiples
 
-L'utilisateur peut vouloir plusieurs valeurs pour une même métadonnée. Par exemple, utiliser plusieurs fois la métadonnée `dc:creator` pour pouvoir renvoyer à plusieurs référentiels.
+L'utilisateur peut vouloir plusieurs valeurs pour une même métadonnée. Par exemple, utiliser plusieurs fois la métadonnée `dc:creator` afin de renvoyer à plusieurs référentiels.
 
-Dans ce cas de figure, il est **obligatoire** d'ajouter un attribut supplémentaire `@key` afin de pouvoir créer une liste de valeurs dans la réponse d'API en JSON.
+Dans ce cas de figure, il est **obligatoire** d'ajouter un attribut supplémentaire `@key` qui permet de créer une **liste** de valeurs dans la réponse d'API en JSON. Chaque élément de cette liste est précédée d'une *clef* dont la valeur est définie dans cet attribut `@key`.
 
 
 ##### Concaténation de chaînes de caractères
