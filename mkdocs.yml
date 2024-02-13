@@ -11,6 +11,10 @@ nav:
 theme:
   name: material
 
+plugins:
+      - render_swagger:
+          allow_arbitrary_locations: true
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
