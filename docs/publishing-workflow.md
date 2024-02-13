@@ -3,7 +3,7 @@
 
 Pour publier un projet, il suffit de charger un *dossier de dépôt* conforme aux recommandations DoTS.
 
-Cette page décrit le *worflow* de publication, les recommandations DoTS de structuration de ce *dossier de dépôt*, et la procédure de création d'un *projet*.
+Cette page décrit le *worflow* de publication, les recommandations DoTS de structuration de ce *dossier de dépôt*, et la procédure de création et gestion d'un *projet*.
 
 
 
@@ -161,6 +161,8 @@ bash basex -b srcPath=/path/to/custom_collections.tsv ../webapp/dots/scripts/cre
 ```
 
 Le fichier `custom_collections.tsv` illustre comment créer de nouvelles collections et lier des documents (déjà existants) à ces collections.
+
+Plus d'informations sont disponibles à cette adresse: [dossier de dépôt](dots-project-folder.md/#autres-collections).
 
 
 ### Supprimer les registres DoTS d’un projet
