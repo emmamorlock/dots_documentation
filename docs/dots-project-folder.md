@@ -216,15 +216,14 @@ Pour les collections et les documents, le fichier `metadata/dots_metadata_mappin
 	  xmlns:dct="http://purl.org/dc/terms/"
 	  xmlns:html="http://www.w3.org/1999/xhtml">
 	  <mapping>
-	    <dct:license scope="collection" resourceId="all" value=".">https://creativecommons.org/licenses/by/4.0/</dct:license>
-	    <dc:title  scope="collection" format="csv" source="./default_collections_titles.tsv" resourceId="id" value="title"/>
+	    <dc:title  scope="collection" format="tsv" source="./default_collections_titles.tsv" resourceId="id" value="title"/>
 	    <dct:license scope="document" resourceId="all" value=".">https://creativecommons.org/licenses/by-nc-sa/4.0/</dct:license>
 	    <dc:title scope="document" xpath="//titleStmt/title[@type = 'main' or position() = 1]"/>
-	    <html:h1 scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="title_rich"/>
-	    <dc:date  scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="promotion_year" type="number"/>
-	    <dc:creator scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="author_fullname_label"></dc:creator>
-	    <dct:creator scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="author_idref_ppn" prefix="https://www.idref.fr/" key="@id"/>
-	    <dct:extent scope="document" format="csv" source="./documents_metadata.tsv" resourceId="id" value="pagination"/>
+	    <html:h1 scope="document" format="tsv" source="./documents_metadata.tsv" resourceId="id" value="title_rich"/>
+	    <dc:date  scope="document" format="tsv" source="./documents_metadata.tsv" resourceId="id" value="promotion_year" type="number"/>
+	    <dc:creator scope="document" format="tsv" source="./documents_metadata.tsv" resourceId="id" value="author_fullname_label"></dc:creator>
+	    <dct:creator scope="document" format="tsv" source="./documents_metadata.tsv" resourceId="id" value="author_idref_ppn" prefix="https://www.idref.fr/" key="@id"/>
+	    <dct:extent scope="document" format="tsv" source="./documents_metadata.tsv" resourceId="id" value="pagination"/>
 	  </mapping>
 	</metadataMap>
 	```

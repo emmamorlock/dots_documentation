@@ -29,12 +29,15 @@ Nous prenons ici l’exemple de la publication des positions de thèses de l’�
 
 La hiérarchie documentaire du corpus des positions est la suivante :
 
-```
-racine
-	> annee
-		> positions
-			> sections
-```
+
+???+ info "Modèle"
+
+  ```
+  racine
+    > annee
+    > positions
+    > sections
+  ```
 
 Pour la gestion et l’édition de vos sources XML/TEI vous pouvez bien entendu organiser le dossier comme bon vous semble.
 Mais pour le chargement en base, le dossier de dépôt DoTS explicite vos choix documentaires. Pour la publication d’un périodique,
