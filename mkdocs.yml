@@ -10,6 +10,7 @@ nav:
 
 theme:
   name: material
+  logo: img/logo-dots.png
 
 extra_css:
   - css/custom.css
