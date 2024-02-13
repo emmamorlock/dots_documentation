@@ -24,9 +24,9 @@ Cette réponse fournit les points d'entrée pour chacun des endpoints DTS. DoTS 
 
 TODO: Swagger Doc
 
-## Endpoint **Collections**
+## Endpoint **Collection**
 
-- Documentation : [https://distributed-text-services.github.io/specifications/Collections-Endpoint.html](https://distributed-text-services.github.io/specifications/Collections-Endpoint.html)
+- Documentation : [https://distributed-text-services.github.io/specifications/Collection-Endpoint.html](https://distributed-text-services.github.io/specifications/Collection-Endpoint.html)
 
 ## Endpoint **Navigation**
 
@@ -34,4 +34,4 @@ TODO: Swagger Doc
 
 ## Endpoint **Document**
 
-- Documentation : [https://distributed-text-services.github.io/specifications/Documents-Endpoint.html](https://distributed-text-services.github.io/specifications/Documents-Endpoint.html)
+- Documentation : [https://distributed-text-services.github.io/specifications/Document-Endpoint.html](https://distributed-text-services.github.io/specifications/Document-Endpoint.html)

@@ -32,7 +32,7 @@ Des [cookbooks](./cookbook.md) illustrent la mise en œuvre de ces recommandatio
 
 - `nom_projet/`: racine du dossier de dépôt. Son nom est libre. Au chargement en base, vous pourrez spécifier le nom de la base de données BaseX, ainsi que l’identifiant DTS attribué à la collection racine. Vous pourrez aussi lui attribuer un titre.
 
-- `data/`: les documents XML/TEI. Ce dossier est **obligatoire**. Il contient les sources XML/TEI de votre projet organisées selon la hiérarchie de votre choix. Cette hiérarchie représente les collections par défaut de votre projet. Par exemple, ici, les documents `file_1.xml` et `file_2.xml` appartiennent à la collection `collection_1`.
+- `data/`: les documents XML/TEI. Ce dossier est **obligatoire**. Il contient les sources XML/TEI de votre projet organisées selon la hiérarchie de votre choix. Cette hiérarchie représente les collections **par défaut** de votre projet. Par exemple, ici, les documents `file_1.xml` et `file_2.xml` appartiennent à la collection `collection_1`.
 
 - `metadata/`: les métadonnées. Ce dossier est **optionnel**. Si présent, il doit contenir *a minima* le document XML `dots_metadata_mapping.xml` qui permet de déclarer l’accès aux métadonnées des collections et/ou des documents. 
 
@@ -116,7 +116,7 @@ Pour un document, le titre (`dc:title`) retenu par ordre de priorité est :
 
 ### Autres collections
 
-Avec DoTS, un même document peut-être assignés à différentes collections.
+Avec DoTS, un même document peut-être assigné à différentes collections.
 
 La description de ces nouvelles collections – avec la liste de leurs documents – doit être structurée dans un TSV conforme au modèle suivant.
 
@@ -128,7 +128,7 @@ La description de ces nouvelles collections – avec la liste de leurs documents
 
 ### Passages
 
-Le endpoint `Navigation` permet de lister les passages référencés d’un document. Le enpoint `Document` permet d’en afficher le contenu.
+Le endpoint `Navigation` permet de lister les passages référencés d’un document. Le endpoint `Document` permet d’en afficher le contenu.
 
 Ce découpage éditorial optionnel d’un document est déclaré dans son `teiHeader` grâce à l’élément [`citeStructure`](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html).
 
@@ -155,7 +155,7 @@ Cette déclaration est **optionnelle**.
 
 ### Métadonnées obligatoires
 
-**Pour une collection et un document**, DTS impose la déclaration d’un identifiant et d’un titre. Cependant, pour publier un projet, DoTS n’a besoin d’aucune métadonnée et attribue automatiquement aux ressources un identifiant et un titre défini selon cet ordre de priorité.
+**Pour une collection et un document**, DTS impose la déclaration d’un identifiant et d’un titre. Cependant, pour publier un projet, DoTS n’a besoin d’aucune métadonnée et attribue automatiquement aux ressources un identifiant et un titre défini selon l'ordre de priorité suivant :
 
 #### Pour une collection
 
@@ -163,13 +163,13 @@ Identifiant :
 
 1. nom du dossier de collection dans `data/`
 
-???+ note
+???+ warning
 	
-	Il est donc recommandé de ne pas utiliser d’espace ou de diacritique pour le nommage de ces dossiers. Un plan de nommage de ces dossiers de collection peut utilement documenter un dossier de dépôt dans le `README.md`.
+	L'utilisation d’espace ou de diacritique pour le nommage de ces dossiers n'est donc pas autorisé. Un plan de nommage de ces dossiers de collection peut utilement documenter un dossier de dépôt dans le `README.md`.
 
 Titre (`dc:title`) :
 
-1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir surcharge)
+1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir [surcharge]())
 1. nom du dossier de collection dans `data/`
 
 ???+ note
@@ -256,15 +256,13 @@ Certaines métadonnées, telle qu’une licence, peuvent être partagées par l�
 	```xml
 	<dct:license
 		scope="document"
-		resourceId="all"
-		value=".">https://creativecommons.org/licenses/by-nc-sa/4.0/</dct:license>
+		resourceId="all">https://creativecommons.org/licenses/by-nc-sa/4.0/</dct:license>
 	```
 
 |attribut|définition|valeur|commentaire|
 |--------|----------|------|-----------|
 |`@scope`|type des ressources décrites|`collection` ou `document`||
 |`resourceId`|ids des ressources décrites|`all`|la métadonnée décrit toutes les ressources d’un type|
-|`value`|emplacement de la valeur|`.`|la valeur de la métadonnée correspond au contenu de l’élément|
 
 <!--
 **Modèle**

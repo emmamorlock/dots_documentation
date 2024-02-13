@@ -29,7 +29,6 @@ Nous prenons ici l’exemple de la publication des positions de thèses de l’�
 
 La hiérarchie documentaire du corpus des positions est la suivante :
 
-
 ???+ info "Modèle"
 
   ```
@@ -55,6 +54,16 @@ Par conséquent, chaque position devient un document de cette collection annuell
 
 #### Structure
 
+???info "Hiérarchie documentaire"
+
+  ```
+  encpos                collection (collection de premier niveau)
+    > annee             collection
+      > positions       document
+        > sections      fragment
+  ```
+Il convient de déclarer chacune de ces unités documentaires.
+
 |unité documentaire|type de resource|data type|(x)path|
 |------------------|----------------|---------|----|
 |collection des positions|collection|file dir |`data/`|
@@ -62,17 +71,19 @@ Par conséquent, chaque position devient un document de cette collection annuell
 |position          |document        |TEI file |`data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml`|
 |section           |fragment        |TEI node |`/TEI/text/boby/div`|
 
+**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un CSV (ici `default_collections_titles.tsv`).
 
+**Documents**. Les documents correspondent aux fichiers XML/TEI.
 
-La hiérarchie documentaire est la suivante :
+**Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
 
-```
-encpos							collection (project root)
-	> annee						collection
-		> positions				document
-			> sections			fragment
-```
+???+ example "Example de `tei:citeStructure`"
 
+  ```xml
+    <citeStructure unit="chapter" match="/TEI/text/body/div" use="position()">
+      <citeData use="head" property="dc:title"/>
+    </citeStructure>
+  ```
 
 #### Corpus de test
 
@@ -82,7 +93,7 @@ Le corpus de test est disponible : [https://github.com/chartes/dots_documentatio
 !!! info "Structure du dossier de dépôt"
 
 	```
-	ENCPOS/								# collection racine
+	ENCPOS/								# collection de premier niveau
 		data/
 			ENCPOS_1849/				# collection
 				ENCPOS_1849_04.xml		# document
@@ -104,7 +115,7 @@ Le corpus de test est disponible : [https://github.com/chartes/dots_documentatio
 #### Dossier `data/`
 
 - Les documents (les fichiers XML/TEI) DOIVENT être regroupés dans un dossier `/data`.
-- La structure de ce dossier `/data` permet de représenter les collections **par défaut** du corpus : ici, le document `ENCPOS_1849_04.xml` appartient par défaut à la collection `ENCPOS_1849`.
+- La structure de ce dossier `/data` permet de représenter les collections **par défaut** du corpus : ici, le document `ENCPOS_1849_04.xml` appartient par défaut à la collection `ENCPOS_1849`.
 - Nous verrons qu’un document peut appartenir à plusieurs collections.
 
 
@@ -119,9 +130,11 @@ Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
 - lister et qualifier les métadonnées partagées via le endpoint DTS Collections ;
 - déclarer leur localisation.
 
-Ces métadonnées peuvent être inscrites dans la source XML/TEI, généralement dans le `teiHeader`. Dans ce cas, la localisation est inscrite en valeur de l’attribut `@xpath`.
+Ces métadonnées peuvent être inscrites "en dure" dans le document `dots_metadata_mapping.xml`. Autrement dit, la valeur est inscrite directement dans le document XML.
 
-Ces métadonnées peuvent être déportées dans un tableur CSV (`@source`). Dans ce cas, la localisation est inscrite en valeur de l’attribut `@value`.
+Elles peuvent être inscrites dans la source XML/TEI, généralement dans le `teiHeader`. Dans ce cas, la localisation est inscrite en valeur de l’attribut `@xpath`.
+
+Elles peuvent aussi être déportées dans un tableur CSV (`@source`). Dans ce cas, la localisation est inscrite en valeur de l’attribut `@value`.
 
 Exemples :
 
@@ -144,8 +157,11 @@ Exemples :
   scope="collection"/>
 ```
 
-> NB1. Il est recommandé de fournir a minima un CSV avec le titre des collections (ici `default_collections_titles.tsv`).  
-> NB2. Si aucune métadonnée n’est fournie, DoTS utilise le nom du dossier (qui sert aussi d’identifiant de collection) comme titre de collection.
+???+ note
+
+  Il est recommandé de fournir a minima un CSV avec le titre des collections (ici `default_collections_titles.tsv`). 
+
+  Si aucune métadonnée n’est fournie, DoTS utilise le nom du dossier (qui sert aussi d’identifiant de collection) comme titre de collection.
 
 
 #### Déclaration des fragments
@@ -190,14 +206,14 @@ Par conséquent, chaque position devient un fragment de ce document.
 #### Structure
 
 
-La hiérarchie documentaire est la suivante :
+???+ info "Hiérarchie documentaire"
 
-```
-encpos							collection
-	> annee						document
-		> positions				fragment
-			> sections			fragment
-```
+  ```
+  encpos					    collection (collection de premier niveau)
+  	> annee						document
+  		> positions				fragment
+  			> sections			fragment
+  ```
 
 Il convient de déclarer chacune de ces unités documentaires.
 
@@ -209,52 +225,59 @@ Il convient de déclarer chacune de ces unités documentaires.
 |section           |fragment        |TEI node |`/TEI/text/boby/div[@type='position]/div`|
 
 
-**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un CSV (ici `titles.tsv`).
+**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut.
 
 **Documents**. Les documents correspondent aux fichiers XML/TEI.
 
 **Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
 
-```xml
-<encodingDesc>
-  <refsDecl>
-    <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
+???+ example "`citeStructure`"
+
+  ```xml
+  <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
+    <citeData use="head" property="dc:title"/>
+    <citeStructure unit="chapter" match="div" use="position()">
       <citeData use="head" property="dc:title"/>
-      <citeStructure unit="chapter" match="div" use="position()">
-        <citeData use="head" property="dc:title"/>
-      </citeStructure>
     </citeStructure>
-  </refsDecl>
-</encodingDesc>
-```
+  </citeStructure>
+  ```
 
 
 #### Corpus de test
 
 Le corpus de test : [https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume](https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume)
 
-```
-Dir Project (exemple: ENCPOS)
+!!! info "Structure du dossier de dépôt"
 
-  > /positions_by_volume (collection - projet)
-    >/data
-      > /ENCPOS_1849_c2.xml (document)
-      > /ENCPOS_1971_c2.xml (document)
-      > /ENCPOS_1972_c2.xml (document)
-    > /metadata
-      > dots_metadata_mapping.xml
-      > encpos.tsv
-      > titles.csv
-```
+  ``` 
+  ENCPOS/                           # collection de premier niveau
+    data/
+      ENCPOS_1849_c2.xml            # document
+      ENCPOS_1971_c2.xml 
+      ENCPOS_1972_c2.xml 
+    metadata/
+      default_resources_titles.tsv
+      dots_metadata_mapping.xml     # métadonnées des collections et des documents
+    README.md
+  ```
 
 #### Dossier `data/`
 
-Le dossier `/data` regroupe les fichiers TEI de la collection projet : ici, le document ENCPOS_1849.xml, par exemple, regroupe toutes les positions de 1849.
-Chaque position est dans ce cas un fragment du document.
+- Les documents (les fichiers XML/TEI) DOIVENT $etre regroupés dans un dossier `/data`.
+- Ici, le document `ENCPOS_1849.xml`, par exemple, regroupe toutes les positions de 1849.
+- Chaque position est dans ce cas un fragment du document.
 
 #### Dossier `metadata/`
 
-Ce dossier contient les métadonnées descriptives des documents: le document `default_resources_titles.tsv` permet de lister les titres de la collection racine et des documents.
+Ce dossier est facultatif.
+
+Il contient les métadonnées descriptives : `default_resources_titles.tsv` permet de lister les titres de la collection racine et des documents.
+
+Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
+
+- lister et qualifier les métadonnées partagées via le endpoint DTS Collections ;
+- déclarer leur localisation.
+
 
 #### Déclaration des fragments
 
