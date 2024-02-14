@@ -10,13 +10,15 @@ Cette recette détaille les possibilités offertes par DoTS pour la publication 
 
 Un périodique est une publication régulière et collective, par exemple une revue érudite semestrielle ou les actes annuels d’une conférence.
 
-Nous prenons ici l’exemple de la publication des positions de thèses de l’École des chartes. Une *position* est un résumé de la thèse défendue. Depuis 1849, chaque année un recueil des positions est publié. L’ensemble de ces positions est consultable en ligne : [https://theses.chartes.psl.eu/](https://theses.chartes.psl.eu/).
+Nous prenons ici l’exemple de la publication des positions de thèses de l’École des chartes. Une *position* est un résumé de la thèse défendue. Depuis 1849, chaque année un recueil des positions est publié. L’ensemble de ces positions est consultable en ligne : <a href="https://theses.chartes.psl.eu/" target="_blank">https://theses.chartes.psl.eu/</a>.
 
+
+<!--
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
   url="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18")
 }}
-
+-->
 
 <!--
 ```JSON title="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
@@ -26,7 +28,7 @@ Nous prenons ici l’exemple de la publication des positions de thèses de l’�
 
 ### Définition du modèle documentaire
 
-[DTS](https://distributed-text-services.github.io/specifications/) permet de décrire et de standardiser l’accès aux :
+<a href="https://distributed-text-services.github.io/specifications/" target="_blank">DTS</a> permet de décrire et de standardiser l’accès aux :
 
 - collections (`resource @type:Collection`) ;
 - documents (`resource @type:Resource`) ;
@@ -37,12 +39,12 @@ La hiérarchie documentaire du corpus des positions est la suivante :
 
 ???+ info "Modèle"
 
-  ```
-  racine
-    > annee
-    > positions
-    > sections
-  ```
+    ```
+    racine
+      > annee
+      > positions
+      > sections
+    ```
 
 Pour la gestion et l’édition de vos sources XML/TEI vous pouvez bien entendu organiser le dossier comme bon vous semble.
 Mais pour le chargement en base, le dossier de dépôt DoTS explicite vos choix documentaires. Pour la publication d’un périodique,
@@ -60,14 +62,14 @@ Par conséquent, chaque position devient un document de cette collection annuell
 
 #### Structure
 
-???info "Hiérarchie documentaire"
+???+ info "Hiérarchie documentaire"
 
-  ```
-  encpos                collection (collection de premier niveau)
-    > annee             collection
-      > positions       document
-        > sections      fragment
-  ```
+    ```
+    encpos                collection (collection de premier niveau)
+      > annee             collection
+        > positions       document
+          > sections      fragment
+    ```
 Il convient de déclarer chacune de ces unités documentaires.
 
 |unité documentaire|type de resource|data type|(x)path|
@@ -77,24 +79,23 @@ Il convient de déclarer chacune de ces unités documentaires.
 |position          |document        |TEI file |`data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml`|
 |section           |fragment        |TEI node |`/TEI/text/boby/div`|
 
-**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un CSV (ici `default_collections_titles.tsv`).
+**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un TSV (ici `default_collections_titles.tsv`).
 
 **Documents**. Les documents correspondent aux fichiers XML/TEI.
 
-**Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
+**Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément <a href="https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html" target="_blank">`citeStructure`</a> du `teiHeader` :
 
 ???+ example "Example de `tei:citeStructure`"
 
-  ```xml
-    <citeStructure unit="chapter" match="/TEI/text/body/div" use="position()">
-      <citeData use="head" property="dc:title"/>
-    </citeStructure>
-  ```
+    ```xml
+      <citeStructure unit="chapter" match="/TEI/text/body/div" use="position()">
+        <citeData use="head" property="dc:title"/>
+      </citeStructure>
+    ```
 
 #### Corpus de test
 
-Le corpus de test est disponible : [https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract](https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract)
-
+Le corpus de test est disponible : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract</a>
 
 !!! info "Structure du dossier de dépôt"
 
@@ -121,7 +122,7 @@ Le corpus de test est disponible : [https://github.com/chartes/dots_documentatio
 #### Dossier `data/`
 
 - Les documents (les fichiers XML/TEI) DOIVENT être regroupés dans un dossier `/data`.
-- La structure de ce dossier `/data` permet de représenter les collections **par défaut** du corpus : ici, le document `ENCPOS_1849_04.xml` appartient par défaut à la collection `ENCPOS_1849`.
+- La structure de ce dossier `/data` permet de représenter les collections par défaut du corpus : ici, le document `ENCPOS_1849_04.xml` appartient **par défaut** à la collection `ENCPOS_1849`.
 - Nous verrons qu’un document peut appartenir à plusieurs collections.
 
 
@@ -140,68 +141,70 @@ Ces métadonnées peuvent être inscrites "en dure" dans le document `dots_metad
 
 Elles peuvent être inscrites dans la source XML/TEI, généralement dans le `teiHeader`. Dans ce cas, la localisation est inscrite en valeur de l’attribut `@xpath`.
 
-Elles peuvent aussi être déportées dans un tableur CSV (`@source`). Dans ce cas, la localisation est inscrite en valeur de l’attribut `@value`.
+Elles peuvent aussi être déportées dans un tableur TSV (`@source`). Dans ce cas, la localisation est inscrite en valeur de l’attribut `@value`.
 
 Exemples :
 
-- le titre (`dc:title`) de chaque document du projet :
+???+ example "titre (`dc:title`) de chaque document"
+    ```xml
+    <dc:title
+      xpath="//titleStmt/title[@type='main' or position()=1]"
+      scope="document"/>
+    ```
 
-```xml
-<dc:title
-  xpath="//titleStmt/title[@type='main' or position()=1]"
-  scope="document"/>
-```
+???+ example "titre (`dc:title`) de chaque collection"
+    ```xml
+    <dc:title
+      format="tsv"
+      source="./default_collections_titles.tsv"
+      resourceId="id"
+      value="title"
+      scope="collection"/>
+    ```
 
-- le titre (`dc:title`) de chaque collection du projet :
-
-```xml
-<dc:title
-  format="csv"
-  source="./default_collections_titles.tsv"
-  resourceId="id"
-  value="title"
-  scope="collection"/>
-```
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="https://dev.chartes.psl.eu/dots/api/dts/collections?id=ENCPOS_1972")
+}}
 
 ???+ note
 
-  Il est recommandé de fournir a minima un CSV avec le titre des collections (ici `default_collections_titles.tsv`). 
+      Il est recommandé de fournir *a minima* un TSV avec le titre des collections (ici `default_collections_titles.tsv`). 
 
-  Si aucune métadonnée n’est fournie, DoTS utilise le nom du dossier (qui sert aussi d’identifiant de collection) comme titre de collection.
+      Si aucune métadonnée n’est fournie, DoTS utilise le nom du dossier (qui sert aussi d’identifiant de collection) comme titre de collection.
 
 
 #### Déclaration des fragments
 
-L'élément `<citeStructure>` ( [https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html](https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html) ) est facultatif.
+L'élément <a href="https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html" target="_blank">`<citeStructure>`</a> est facultatif.
 Il permet de déclarer la structure du document TEI et de retrouver des fragments.
 
-Exemple d'une structure hiérarchique d'un document à un niveau (un chapitre = un fragment) :
-
-```xml
-<encodingDesc>
-  <refsDecl>
+???+ example "structure hiérarchique d'un document à un niveau (un chapitre = un fragment)"
+    ```xml
     <citeStructure unit="chapter" match="/TEI/text/body/div" use="position()">
       <citeData use="head" property="dc:title"/>
     </citeStructure>
-  </refsDecl>
-</encodingDesc>
-```
+    ```
+
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_18")
+}}
 
 
 #### Ajout d’une collection thématique
 
-Dans un second temps, il est possible de créer de nouvelles collections et de lier des documents déjà présents dans la base à ces collections nouvellement créées.
-Ainsi, un même document peut appartenir à plusieurs collections.
+Un document peut appartenir à plusieurs collections. Mais c'est dans un second temps qu'il est possible de créer de nouvelles collections et de lier des documents déjà présents dans la base à ces collections nouvellement créées.
 
-Il est nécessaire pour cela de préparer un tableur TSV sur le modèle de `custom_collections.tsv`.
+Il est nécessaire pour cela de préparer un tableur TSV sur le modèle de `custom_collections.tsv` puis de lancer la commande suivante.
 
-```
-bash basex -b srcPath=/path/to/csv ../webapp/dots/scripts/create_custom_collections.xq 
-```
-
-Argument à spécifier pour lancer la commande :
+Argument à spécifier :
 
 - `srcPath` : chemin vers le tableur TSV
+
+```{.Bash .copy} 
+bash basex -b srcPath=/path/to/tsv ../webapp/dots/scripts/create_custom_collections.xq 
+```
 
 
 ### Cas 2. Un article est un fragment
@@ -214,12 +217,12 @@ Par conséquent, chaque position devient un fragment de ce document.
 
 ???+ info "Hiérarchie documentaire"
 
-  ```
-  encpos					    collection (collection de premier niveau)
-  	> annee						document
-  		> positions				fragment
-  			> sections			fragment
-  ```
+    ```
+    encpos					        collection (collection de premier niveau)
+    	> annee						document
+    		> positions				fragment
+    			> sections			fragment
+    ```
 
 Il convient de déclarer chacune de ces unités documentaires.
 
@@ -239,37 +242,37 @@ Il convient de déclarer chacune de ces unités documentaires.
 
 ???+ example "`citeStructure`"
 
-  ```xml
-  <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
-    <citeData use="head" property="dc:title"/>
-    <citeStructure unit="chapter" match="div" use="position()">
+    ```xml
+    <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
       <citeData use="head" property="dc:title"/>
+      <citeStructure unit="chapter" match="div" use="position()">
+        <citeData use="head" property="dc:title"/>
+      </citeStructure>
     </citeStructure>
-  </citeStructure>
-  ```
+    ```
 
 
 #### Corpus de test
 
-Le corpus de test : [https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume](https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume)
+Le corpus de test : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume</a>
 
 !!! info "Structure du dossier de dépôt"
 
-  ``` 
-  ENCPOS/                           # collection de premier niveau
-    data/
-      ENCPOS_1849_c2.xml            # document
-      ENCPOS_1971_c2.xml 
-      ENCPOS_1972_c2.xml 
-    metadata/
-      default_resources_titles.tsv
-      dots_metadata_mapping.xml     # métadonnées des collections et des documents
-    README.md
-  ```
+    ``` 
+    ENCPOS/                           # collection de premier niveau
+      data/
+        ENCPOS_1849_c2.xml            # document
+        ENCPOS_1971_c2.xml 
+        ENCPOS_1972_c2.xml 
+      metadata/
+        default_resources_titles.tsv
+        dots_metadata_mapping.xml     # métadonnées des collections et des documents
+      README.md
+    ```
 
 #### Dossier `data/`
 
-- Les documents (les fichiers XML/TEI) DOIVENT $etre regroupés dans un dossier `/data`.
+- Les documents (les fichiers XML/TEI) DOIVENT être regroupés dans un dossier `/data`.
 - Ici, le document `ENCPOS_1849.xml`, par exemple, regroupe toutes les positions de 1849.
 - Chaque position est dans ce cas un fragment du document.
 
@@ -287,16 +290,15 @@ Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
 
 #### Déclaration des fragments
 
-L'élément `<citeStructure>` ( [https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html](https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html) ) est utilisé pour déclarer la structure d'un document.
+L'élément `<citeStructure>` ( <a href="https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html" target="_blank">https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html</a> ) est utilisé pour déclarer la structure d'un document.
   Il est possible, comme dans cet exemple, de déclarer une structure imbriquée: les chapitres dans les positions de thèse.
 
-```xml
-<refsDecl>
-  <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
-    <citeData use="head" property="dc:title"/>
-    <citeStructure unit="chapter" match="div" use="position()">
-      <citeData use="head" property="dc:title"/>
-    </citeStructure>
-  </citeStructure>
-</refsDecl>
-```
+???+ example "`citeStructure`"
+    ```xml
+      <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
+        <citeData use="head" property="dc:title"/>
+        <citeStructure unit="chapter" match="div" use="position()">
+          <citeData use="head" property="dc:title"/>
+        </citeStructure>
+      </citeStructure>
+    ```

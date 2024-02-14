@@ -34,16 +34,17 @@ Using DoTS, you can
 
 ### BaseX
 
-Download BaseX (>= 10.0): [https://basex.org/download/](https://basex.org/download/)
+Download BaseX (>= 10.0): <a href="https://basex.org/download/" target="_blank">https://basex.org/download/</a>
 
 !!! info
 
 	- Prefer `ZIP Package`, which ensure that you will find the complete BaseX folder.
-	- Requirements : [https://docs.basex.org/wiki/Startup#Startup](https://docs.basex.org/wiki/Startup#Startup)
+	- Requirements : <a href="https://docs.basex.org/wiki/Startup#Startup" target="_blank">https://docs.basex.org/wiki/Startup#Startup</a>
 
 
 ### DoTS
 
+DoTS must be installed and started directly in the BaseX folder. 
 
 ```Bash
 cd path/to/basex/webapp

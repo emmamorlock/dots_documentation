@@ -3,7 +3,7 @@
 
 Pour publier une collection de documents <a href="https://www.tei-c.org/" target="_blank">TEI</a>, il suffit de charger un *dossier de dépôt* conforme aux recommandations DoTS.
 
-Cette page décrit le *worflow* de publication, les recommandations DoTS de structuration de ce *dossier de dépôt*, et la procédure de création et gestion d'un *projet*.
+Cette page décrit le *worflow* de publication, les recommandations DoTS de structuration de ce *dossier de dépôt*, et la procédure de création et de gestion d'un *projet*.
 
 ## Introduction
 
@@ -13,7 +13,7 @@ Cette page décrit le *worflow* de publication, les recommandations DoTS de stru
 
 **Dossier de dépôt**. Pour être correctement chargé en base avec les outils DoTS, un *projet* doit être structuré dans un dossier conformément aux recommandations de DoTS. Ce dossier est désigné dans la documentation par l’expression "dossier de dépôt".
 
-**Base de données projet** ou **DB projet**. Chaque *projet* (chaque collection DTS de premier niveau) est importé sous la forme d’une base de données BaseX. Les projets *Correspondance* et *Théâtre* sont chargés sous la forme de 2 bases de données distinctes, par exemple respectivement `correspondance` et `theatre`.
+**Base de données projet** ou **DB projet**. Chaque *projet* (chaque collection DTS de premier niveau) est importé sous la forme d’une base de données BaseX. Les projets *Correspondance* et *Théâtre* sont chargés sous la forme de deux bases de données distinctes, par exemple respectivement `correspondance` et `theatre`.
 
 
 ### Workflow
@@ -23,7 +23,7 @@ Cette page décrit le *worflow* de publication, les recommandations DoTS de stru
 
 ???+ note
 
-    DoTS ne fournit pas d'outil pour passer d'un dossier de travail utilisateur à un dossier de dépôt. Mais il peut être pertinent que le dossier de dépôt serve de dossier de travail.
+    DoTS ne fournit pas d'outil pour passer d'un dossier de travail utilisateur à un dossier de dépôt. Mais il est pertinent que le dossier de dépôt serve de dossier de travail.
 
 
 ## Préparer les données
@@ -86,11 +86,11 @@ Il doit pour cela faire usage de l'élément TEI <a href="https://tei-c.org/rele
 
 ## Charger un projet
 
+Pour lancer les commandes, il est nécessaire d'accèder au dossier de `BaseX`, puis de se déplacer dans le dossier `bin/`.
+
 ### Initialisation de la DB dots
 
 Cette première commande permet d'initialiser la base de données dots. Elle sert à relier chaque ressource identifiée (collection ou document) à sa base de données *projet* d'appartenance.
-
-Pour lancer les commandes, il est nécessaire d'accèder au dossier de `BaseX`, puis de se déplacer dans le dossier `bin/`.
 
 ```{.Bash .copy}
 cd path/to/basex/bin
@@ -108,8 +108,11 @@ On doit spécifier les arguments suivants :
 - `dbName` : nom de la base de données BaseX du *projet*
 - `projectDirPath` : chemin absolu vers le *dossier de dépôt* du projet
 
-```Bash
+```{.Bash .copy}
 cd path/to/basex/bin
+```
+
+```{.Bash .copy}
 bash basex -b dbName=db_name -b projectDirPath=/path/to/dossier/de/depot ../webapp/dots/scripts/project_db_init.xq
 ```
 
@@ -121,10 +124,6 @@ La base de données *projet* est créée en conservant la structure du paquet de
 
 	**La base de données du *projet* ne DOIT PAS être ouverte dans le GUI BaseX.**
 
-```Bash
-bash basex -b dbName=db_name -b topCollectionId=top_collection_id ../webapp/dots/scripts/project_registers_create.xq
-```
-
 Cette commande permet de créer les registres dots dans la base de données *projet*. Ce sont ces registres qui fournissent les éléments de réponse au résolveur DTS.
 
 On doit spécifier les arguments suivants :
@@ -132,15 +131,15 @@ On doit spécifier les arguments suivants :
 - `dbName` : nom de la base de données BaseX du *projet*
 - `topCollectionId` : identifiant DTS de la collection racine du *projet*
 
+```{.Bash .copy}
+bash basex -b dbName=db_name -b topCollectionId=top_collection_id ../webapp/dots/scripts/project_registers_create.xq
+```
+
 ### Mise à jour du switcher DoTS
 
 !!! warning
 
 	**La mise à jour du switcher dots doit être réalisée après la création des registres du projet (commande précédente de création de la db project).**
-
-```Bash
-bash basex -b dbName=db_name ../webapp/dots/scripts/dots_switcher_update.xq
-```
 
 Le switcher de la base de données DoTS (`dots_db_switcher.xml`) sert à associer les identifiants des ressources (collections et documents) à leur base de données de *projet* d’appartenance.
 
@@ -148,15 +147,18 @@ On doit spécifier l’argument suivant :
 
 - `dbName` : nom de la base de données BaseX du *projet* à parcourir pour mise à jour du switcher. Ainsi, on peut mettre à jour la base pour un unique *projet*.
 
-Les ressources de votre projet sont décrites et accessibles via les endpoints DTS fournis par DoTS. La description des réponses d'API est disponible à cette adresse: [résolveur](api.md).
+```{.Bash .copy}
+bash basex -b dbName=db_name ../webapp/dots/scripts/dots_switcher_update.xq
+```
+
+Les ressources de votre projet sont désormais décrites et accessibles via les endpoints DTS fournis par DoTS. La description des réponses d'API est disponible à cette adresse: [résolveur](api.md).
 
 
 ## Gérer un projet
 
 ### Créer de nouvelles collections et y attacher des documents (existants)
 
-
-```Bash
+```{.Bash .copy}
 bash basex -b srcPath=/path/to/custom_collections.tsv ../webapp/dots/scripts/create_custom_collections.xq 
 ```
 
@@ -164,16 +166,11 @@ Le fichier `custom_collections.tsv` indique comment créer de nouvelles collecti
 
 Plus d'informations sont disponibles à cette adresse: [dossier de dépôt](dots-project-folder.md/#autres-collections).
 
-
 ### Supprimer les registres DoTS d’un projet
 
-???+ note
+!!! warning
 
 	**Attention :** après avoir utilisé cette commande, le résolveur `dots` ne fournit plus de réponse d'API pour ce *projet*.
-
-```Bash
-bash basex -b dbName=db_name  -b option=true / false../webapp/dots/scripts/dots_registers_delete.xq
-```
 
 Cette commande permet de supprimer toutes les ressources qui appartiennent à la *base de données projet* dans le switcher de la db `dots`. 
 
@@ -183,4 +180,10 @@ On doit spécifier les arguments suivants :
 
 - `dbName` : nom de la base de données BaseX du projet à parcourir suppression des registres DoTS.
 - `option` : valeur booléenne (`false` par défaut). `true` permet de supprimer la base de données *projet* et `false` se contente de supprimer les registres `dots` du *projet*. 
+
+```{.Bash .copy}
+bash basex -b dbName=db_name  -b option=true / false../webapp/dots/scripts/dots_registers_delete.xq
+```
+
+
 

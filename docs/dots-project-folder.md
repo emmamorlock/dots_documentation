@@ -59,7 +59,7 @@ Vous pouvez structurer vos documents en collections et sous-collections hiérarc
 			tartuffe.xml
 	```
 
-??? example "Le projet contient des sous-collections"
+??? example "Le projet contient des collections"
 
 	```
 	theater_project/
@@ -130,7 +130,7 @@ La description de ces nouvelles collections – avec la liste de leurs documents
 
 Le endpoint `Navigation` permet de lister les passages référencés d’un document. Le endpoint `Document` permet d’en afficher le contenu.
 
-Ce découpage éditorial optionnel d’un document est déclaré dans son `teiHeader` grâce à l’élément [`citeStructure`](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html).
+Ce découpage éditorial optionnel d’un document est déclaré dans son `teiHeader` grâce à l’élément <a href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html" target="_blank">`citeStructure`</a>.
 
 Cette déclaration est **optionnelle**.
 

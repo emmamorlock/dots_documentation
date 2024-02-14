@@ -15,11 +15,11 @@
   },
   "servers": [
     {
-      "url": "https://dev.chartes.psl.eu/dots/api/dts/"
+      "url": "https://dev.chartes.psl.eu/dots/api/"
     }
   ],
   "paths": {
-    "/": {
+    "/dts": {
       "get": {
         "tags": [
           "default"
@@ -51,7 +51,7 @@
         }
       }
     },
-    "/collections": {
+    "/dts/collections": {
       "get": {
         "tags": [
           "default"
@@ -100,7 +100,7 @@
         }
       }
     },
-    "/navigation": {
+    "/dts/navigation": {
       "get": {
         "tags": [
           "default"
@@ -169,7 +169,7 @@
         }
       }
     },
-    "/document": {
+    "/dts/document": {
       "get": {
         "tags": [
           "default"
