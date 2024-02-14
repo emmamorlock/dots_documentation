@@ -164,7 +164,7 @@ Exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collections?id=ENCPOS_1972")
+  url="http://localhost:8080/api/dts/collections?id=ENCPOS_1972")
 }}
 
 ???+ note
@@ -188,7 +188,7 @@ Il permet de déclarer la structure du document TEI et de retrouver des fragment
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_18")
+  url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_18")
 }}
 
 
@@ -205,7 +205,15 @@ Argument à spécifier :
 ```{.Bash .copy} 
 bash basex -b srcPath=/path/to/tsv ../webapp/dots/scripts/create_custom_collections.xq 
 ```
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/collections?id=normandy")
+}}
 
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/collections?id=ENCPOS_1849_04&nav=parents")
+}}
 
 ### Cas 2. Un article est un fragment
 
@@ -236,6 +244,11 @@ Il convient de déclarer chacune de ces unités documentaires.
 
 **Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut.
 
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/collections?id=ENCPOS_c2")
+}}
+
 **Documents**. Les documents correspondent aux fichiers XML/TEI.
 
 **Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
@@ -251,6 +264,15 @@ Il convient de déclarer chacune de ces unités documentaires.
     </citeStructure>
     ```
 
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_c2")
+}}
+
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
+}}
 
 #### Corpus de test
 
