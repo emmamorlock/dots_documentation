@@ -65,20 +65,6 @@ Il convient de déclarer chacune de ces unités documentaires.
 |position          |document        |TEI file |`data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml`|
 |section           |fragment        |TEI node |`/TEI/text/boby/div`|
 
-<!-- **Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un TSV (ici `default_collections_titles.tsv`).
-
-**Documents**. Les documents correspondent aux fichiers XML/TEI.
-
-**Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément <a href="https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-citeStructure.html" target="_blank">`citeStructure`</a> du `teiHeader` :
-
-???+ example "Example de `tei:citeStructure`"
-
-    ```xml
-      <citeStructure unit="chapter" match="/TEI/text/body/div" use="position()">
-        <citeData use="head" property="dc:title"/>
-      </citeStructure>
-    ```
--->
 #### Corpus de test
 
 Le corpus de test est disponible : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract</a>.
@@ -126,7 +112,7 @@ Il contient les métadonnées descriptives des ressources : `default_collections
 
 Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
 
-- lister et qualifier les métadonnées partagées via le endpoint DTS Collections ;
+- lister et qualifier les métadonnées partagées via le endpoint DTS Collection ;
 - déclarer leur localisation.
 
 Ces métadonnées peuvent être inscrites "en dure" dans le document `dots_metadata_mapping.xml`. Autrement dit, la valeur est inscrite directement dans le document XML.
@@ -233,39 +219,6 @@ Il convient de déclarer chacune de ces unités documentaires.
 |position          |fragment        |TEI node |`/TEI/text/boby/div[@type='position]'`|
 |section           |fragment        |TEI node |`/TEI/text/boby/div[@type='position]/div`|
 
-
-<!--**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut.
-
-{{ macro_collapse_card_api_doc(
-  verb_http="get", 
-  url="http://localhost:8080/api/dts/collection?id=ENCPOS_c2")
-}}
-
-**Documents**. Les documents correspondent aux fichiers XML/TEI.
-
-**Fragments**. La hiérarchie des fragments est déclarée, pour chaque document, grâce à l’élément `citeStructure` du `teiHeader` :
-
-???+ example "`citeStructure`"
-
-    ```xml
-    <citeStructure unit="position" match="/TEI/text/body/div[@type='position']" use="@xml:id">
-      <citeData use="head" property="dc:title"/>
-      <citeStructure unit="chapter" match="div" use="position()">
-        <citeData use="head" property="dc:title"/>
-      </citeStructure>
-    </citeStructure>
-    ```
-
-{{ macro_collapse_card_api_doc(
-  verb_http="get", 
-  url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_c2")
-}}
-
-{{ macro_collapse_card_api_doc(
-  verb_http="get", 
-  url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
-}}
--->
 #### Corpus de test
 
 Le corpus de test est disponible : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume</a>.

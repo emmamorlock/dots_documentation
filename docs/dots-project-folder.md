@@ -59,7 +59,7 @@ Vous pouvez structurer vos documents en collections et sous-collections hiérarc
 			tartuffe.xml
 	```
 
-??? example "Le projet contient des collections"
+??? example "Le projet contient des sous-collections"
 
 	```
 	theater_project/

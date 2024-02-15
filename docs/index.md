@@ -18,7 +18,7 @@ Publishers of digital text collections can use the DTS API to help them make the
 
 Using DoTS, you can
 
-- with the DTS Collections endpoint:
+- with the DTS Collection endpoint:
 	- Retrieve lists of collection members.
 	- Retrieve metadata about individual collection items.
 - with the DTS Navigation endpoint:

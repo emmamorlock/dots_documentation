@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "DoTS - OpenAPI 3.0",
-    "description": "**Documentation and specification of the [DTS API](https://distributed-text-services.github.io/specifications/) implementation by [DoTS](https://github.com/chartes/dots).** \n\n  DoTS is a suite of XQuery tools in [BaseX](https://basex.org/) designed to provide a resolver for the DTS API. \n \n This API offers an access to the endpoints :\n * Base API Endpoint \n * collections (navigating collections) \n * navigation (list of passages accessible for navigation from a given reference within a resource) \n * document (acces to the content of document) ",
+    "description": "**Documentation and specification of the [DTS API](https://distributed-text-services.github.io/specifications/) implementation by [DoTS](https://github.com/chartes/dots).** \n\n  DoTS is a suite of XQuery tools in [BaseX](https://basex.org/) designed to provide a resolver for the DTS API. \n \n This API offers an access to the endpoints :\n * Base API Endpoint \n * collection (navigating collections) \n * navigation (list of passages accessible for navigation from a given reference within a resource) \n * document (acces to the content of document) ",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -51,7 +51,7 @@
         }
       }
     },
-    "/dts/collections": {
+    "/dts/collection": {
       "get": {
         "tags": [
           "default"
