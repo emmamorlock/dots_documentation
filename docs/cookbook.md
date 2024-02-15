@@ -42,8 +42,8 @@ La hiérarchie documentaire du corpus des positions est la suivante :
     ```
     racine
       > annee
-      > positions
-      > sections
+        > positions
+          > sections
     ```
 
 Pour la gestion et l’édition de vos sources XML/TEI vous pouvez bien entendu organiser le dossier comme bon vous semble.
@@ -79,7 +79,7 @@ Il convient de déclarer chacune de ces unités documentaires.
 |position          |document        |TEI file |`data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml`|
 |section           |fragment        |TEI node |`/TEI/text/boby/div`|
 
-**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un TSV (ici `default_collections_titles.tsv`).
+<!-- **Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut. Les métadonnées peuvent être déportées dans un TSV (ici `default_collections_titles.tsv`).
 
 **Documents**. Les documents correspondent aux fichiers XML/TEI.
 
@@ -92,10 +92,10 @@ Il convient de déclarer chacune de ces unités documentaires.
         <citeData use="head" property="dc:title"/>
       </citeStructure>
     ```
-
+-->
 #### Corpus de test
 
-Le corpus de test est disponible : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract</a>
+Le corpus de test est disponible : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_abstract</a>.
 
 !!! info "Structure du dossier de dépôt"
 
@@ -242,7 +242,7 @@ Il convient de déclarer chacune de ces unités documentaires.
 |section           |fragment        |TEI node |`/TEI/text/boby/div[@type='position]/div`|
 
 
-**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut.
+<!--**Collections**. Il suffit d’organiser le dossier `data/` en collections et sous-collections par défaut.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
@@ -273,10 +273,10 @@ Il convient de déclarer chacune de ces unités documentaires.
   verb_http="get", 
   url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
 }}
-
+-->
 #### Corpus de test
 
-Le corpus de test : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume</a>
+Le corpus de test est disponible : <a href="https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume" target="_blank">https://github.com/chartes/dots_documentation/tree/dev/data_test/periodiques/encpos_by_volume</a>.
 
 !!! info "Structure du dossier de dépôt"
 
@@ -295,8 +295,17 @@ Le corpus de test : <a href="https://github.com/chartes/dots_documentation/tree/
 #### Dossier `data/`
 
 - Les documents (les fichiers XML/TEI) DOIVENT être regroupés dans un dossier `/data`.
-- Ici, le document `ENCPOS_1849.xml`, par exemple, regroupe toutes les positions de 1849.
+- Ici, le document `ENCPOS_1849_c2.xml`, par exemple, regroupe toutes les positions de 1849.
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/collections?id=ENCPOS_1972_c2")
+}}
+
 - Chaque position est dans ce cas un fragment du document.
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/navigation?id=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
+}}
 
 #### Dossier `metadata/`
 
@@ -304,11 +313,10 @@ Ce dossier est facultatif.
 
 Il contient les métadonnées descriptives : `default_resources_titles.tsv` permet de lister les titres de la collection racine et des documents.
 
-Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
-
-- lister et qualifier les métadonnées partagées via le endpoint DTS Collections ;
-- déclarer leur localisation.
-
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="http://localhost:8080/api/dts/collections?id=ENCPOS_c2")
+}}
 
 #### Déclaration des fragments
 
