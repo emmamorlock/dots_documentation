@@ -1,6 +1,6 @@
 site_name: My Docs
 site_name: DoTS documentation
-site_url: https://dots.documentation.com/
+site_url: https://dots-documentation.github.io/
 nav:
     - DoTS: index.md
     - Publier un corpus: publishing-workflow.md
