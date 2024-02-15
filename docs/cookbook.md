@@ -12,20 +12,6 @@ Un périodique est une publication régulière et collective, par exemple une re
 
 Nous prenons ici l’exemple de la publication des positions de thèses de l’École des chartes. Une *position* est un résumé de la thèse défendue. Depuis 1849, chaque année un recueil des positions est publié. L’ensemble de ces positions est consultable en ligne : <a href="https://theses.chartes.psl.eu/" target="_blank">https://theses.chartes.psl.eu/</a>.
 
-
-<!--
-{{ macro_collapse_card_api_doc(
-  verb_http="get", 
-  url="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18")
-}}
--->
-
-<!--
-```JSON title="https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
---8<-- "https://theses.chartes.psl.eu/dts/collections?id=ENCPOS_1972_18"
-```
--->
-
 ### Définition du modèle documentaire
 
 <a href="https://distributed-text-services.github.io/specifications/" target="_blank">DTS</a> permet de décrire et de standardiser l’accès aux :
@@ -164,7 +150,7 @@ Exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="http://localhost:8080/api/dts/collections?id=ENCPOS_1972")
+  url="http://localhost:8080/api/dts/collection?id=ENCPOS_1972")
 }}
 
 ???+ note
@@ -207,12 +193,12 @@ bash basex -b srcPath=/path/to/tsv ../webapp/dots/scripts/create_custom_collecti
 ```
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="http://localhost:8080/api/dts/collections?id=normandy")
+  url="http://localhost:8080/api/dts/collection?id=normandy")
 }}
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="http://localhost:8080/api/dts/collections?id=ENCPOS_1849_04&nav=parents")
+  url="http://localhost:8080/api/dts/collection?id=ENCPOS_1849_04&nav=parents")
 }}
 
 ### Cas 2. Un article est un fragment
@@ -246,7 +232,7 @@ Il convient de déclarer chacune de ces unités documentaires.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="http://localhost:8080/api/dts/collections?id=ENCPOS_c2")
+  url="http://localhost:8080/api/dts/collection?id=ENCPOS_c2")
 }}
 
 **Documents**. Les documents correspondent aux fichiers XML/TEI.
@@ -298,7 +284,7 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 - Ici, le document `ENCPOS_1849_c2.xml`, par exemple, regroupe toutes les positions de 1849.
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="http://localhost:8080/api/dts/collections?id=ENCPOS_1972_c2")
+  url="http://localhost:8080/api/dts/collection?id=ENCPOS_1972_c2")
 }}
 
 - Chaque position est dans ce cas un fragment du document.
@@ -315,7 +301,7 @@ Il contient les métadonnées descriptives : `default_resources_titles.tsv` per
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="http://localhost:8080/api/dts/collections?id=ENCPOS_c2")
+  url="http://localhost:8080/api/dts/collection?id=ENCPOS_c2")
 }}
 
 #### Déclaration des fragments
@@ -332,3 +318,4 @@ L'élément `<citeStructure>` ( <a href="https://www.tei-c.org/release/doc/tei-p
         </citeStructure>
       </citeStructure>
     ```
+
