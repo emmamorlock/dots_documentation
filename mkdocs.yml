@@ -37,3 +37,5 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+
+copyright: Copyright &copy; 2024 - <a target="blank" href="https://www.chartes.psl.eu/">École nationale des chartes</a> &amp; <a href="https://projet.biblissima.fr/fr" target="blank">Biblissima+</a>
