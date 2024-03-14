@@ -3,6 +3,7 @@
 
 # DoTS documentation
 
+
 ![](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue)
 
 <a href="https://www.mkdocs.org" target="_blank" rel="nofollow">
