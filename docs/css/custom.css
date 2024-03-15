@@ -60,9 +60,17 @@
 }
 
 /* header */
-.md-header__inner img {
-    width: 100px !important;
-    height: 55px !important;
+
+
+
+.md-header__button  {
+  height: 10%;
+  width: 10%;
+}
+
+.md-header__button img {
+  height: 80% !important;
+  width: 80% !important;
 }
 
 /* footer */
