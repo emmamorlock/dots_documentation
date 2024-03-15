@@ -1,6 +1,7 @@
 site_name: My Docs
 site_name: DoTS documentation
 site_url: https://dots-documentation.github.io/
+copyright: © 2023-2024 DoTS
 
 nav:
     - DoTS: index.md
@@ -12,6 +13,7 @@ nav:
 theme:
   name: material
   logo: assets/dots-logo-retro.drawio.png
+  custom_dir: docs/overrides
 
 extra_css:
   - css/custom.css
@@ -38,14 +40,3 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
 
-
-copyright:
-  <div class="footer-container">
-  <div class="logo-footer-container">
-  <a href="https://www.chartes.psl.eu/" target="blank"><img src="assets/logo-chartes.png" class="footer-logo-enc"/></a>
-  <a href="https://projet.biblissima.fr/fr" target="blank"><img src="assets/biblissima-logo.png" class="footer-logo-biblissima"/></a>
-  </div>
-  <div class="footer-text">
-  <p>© 2023-2024 DoTS</p>
-  </div>
-  </div>

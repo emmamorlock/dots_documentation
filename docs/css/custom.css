@@ -61,8 +61,6 @@
 
 /* header */
 
-
-
 .md-header__button  {
   height: 10%;
   width: 10%;
@@ -111,14 +109,19 @@
     color: #000000 !important;
 }
 
-.md-copyright {
+.md-footer-copyright__highlight {
     color: #000000 !important;
+    font-size: 0.7rem !important;
 }
 
-.md-copyright > a {
+.label-mkdocs-container {
+    font-size: 0.7rem;
+}
+
+.label-mkdocs-container > a {
     color: #606060 !important;
 }
 
-.md-copyright > a:hover {
+.label-mkdocs-container > a:hover {
     color: #000000 !important;
 }
