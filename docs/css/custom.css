@@ -59,3 +59,58 @@
     transform: rotate(90deg);
 }
 
+/* header */
+.md-header__inner img {
+    width: 100px !important;
+    height: 55px !important;
+}
+
+/* footer */
+
+.md-footer {
+    margin-top: 20px;
+    background-color: #3F51B5 !important;
+    box-shadow: 0 0 20px #0000001a !important;
+}
+
+.md-footer-meta {
+    background-color: #ffffff !important;
+    border-radius: 210px 0 250px 0;
+    border: 2px solid #3F51B5;
+}
+
+.logo-footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer-logo-biblissima {
+    width: 17rem;
+    height: 10rem;
+    margin-right: 3px;
+}
+
+.footer-logo-enc {
+    width: 8rem;
+    height: 10rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer-container {
+    color: #000000 !important;
+}
+
+.md-copyright {
+    color: #000000 !important;
+}
+
+.md-copyright > a {
+    color: #606060 !important;
+}
+
+.md-copyright > a:hover {
+    color: #000000 !important;
+}
