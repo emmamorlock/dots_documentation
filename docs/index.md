@@ -1,5 +1,7 @@
 # DoTS
 
+<img src="./assets/dots-logo-retro.drawio.svg" alt="dots-logo" width="30%" style="display: block; margin: 0 auto;">
+
 ## What is DoTS?
 
 DoTS is an XQuery implementation of DTS using a <a href="https://basex.org/" target="_blank">BaseX</a> backend.
