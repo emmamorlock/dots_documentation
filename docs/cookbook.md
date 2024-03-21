@@ -29,7 +29,7 @@ La hiérarchie documentaire du corpus des positions est la suivante :
     racine
       > annee
         > positions
-          > sections
+          > sections 
     ```
 
 Pour la gestion et l’édition de vos sources XML/TEI vous pouvez bien entendu organiser le dossier comme bon vous semble.
@@ -71,8 +71,8 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 
 !!! info "Structure du dossier de dépôt"
 
-	```
-	ENCPOS/								# collection de premier niveau
+    ```
+	ENCPOS/								# collection de premier niveau 
 		data/
 			ENCPOS_1849/				# collection
 				ENCPOS_1849_04.xml		# document
@@ -88,8 +88,7 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 			documents_metadata.tsv
 			dots_metadata_mapping.xml
 		README.md
-	```
-
+    ```
 
 #### Dossier `data/`
 
@@ -125,9 +124,9 @@ Exemples :
 
 ???+ example "titre (`dc:title`) de chaque document"
     ```xml
-    <dc:title
-      xpath="//titleStmt/title[@type='main' or position()=1]"
-      scope="document"/>
+    <dc:title 
+      xpath="//titleStmt/title[@type='main' or position()=1]" 
+     scope="document"/> 
     ```
 
 ???+ example "titre (`dc:title`) de chaque collection"
