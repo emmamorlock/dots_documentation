@@ -1,6 +1,7 @@
 site_name: My Docs
 site_name: DoTS documentation
 site_url: https://dots-documentation.github.io/
+copyright: © 2023-2024 DoTS
 
 nav:
     - DoTS: index.md
@@ -14,7 +15,8 @@ nav:
 
 theme:
   name: material
-  logo: img/logo-dots.png
+  logo: assets/dots-logo-retro.drawio.png
+  custom_dir: docs/overrides
   features:
     - navigation.indexes
     - content.code.annotate

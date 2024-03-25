@@ -86,9 +86,12 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 	theatre/								# collection de premier niveau
 		data/
 			moliere/						# collection
-				moliere_avare.xml			# document				moliere_dom-juan.xml				moliere_tartuffe.xml
+				moliere_avare.xml			# document
+				moliere_dom-juan.xml
+				moliere_tartuffe.xml
 			racine/
-				racine_andromaque.xml				racine_phedre.xml
+				racine_andromaque.xml
+				racine_phedre.xml
 		metadata/							# métadonnées
 			default_collections_titles.tsv
 			dots_metadata_mapping.xml
@@ -159,30 +162,30 @@ Prenons l’exemple de *Phèdre* de Racine. La structure imbriquée du `citeStru
 
 ???+ example "Déclaration de la structure éditoriale de *Phèdre* de Racine"
 
-  ``` XML
-  <!--(1)-->
-  <citeStructure match="/TEI/text/body/div[@type='acte']" use="@xml:id" unit="act">
-    <citeData use="head" property="dc:title"/>
-    <!--(2)-->
-    <citeStructure match="div[@type='scene']" use="@xml:id" unit="scene">
+    ```XML
+    <!--(1)-->
+    <citeStructure match="/TEI/text/body/div[@type='acte']" use="@xml:id" unit="act">
       <citeData use="head" property="dc:title"/>
-      <citeData use="stage" property="tei:castList"/>
-      <!--(3)-->
-      <citeStructure match="sp" use="@xml:id" unit="individual_speech">
-        <citeData use="substring-after(@who, '#')" property="tei:role"/>
-        <!--(4)-->
-        <citeStructure match="l" use="@xml:id" unit="verse">
-          <citeData use="@n" property="tei:num"/>
+      <!--(2)-->
+      <citeStructure match="div[@type='scene']" use="@xml:id" unit="scene">
+        <citeData use="head" property="dc:title"/>
+        <citeData use="stage" property="tei:castList"/>
+        <!--(3)-->
+        <citeStructure match="sp" use="@xml:id" unit="individual_speech">
+          <citeData use="substring-after(@who, '#')" property="tei:role"/>
+          <!--(4)-->
+          <citeStructure match="l" use="@xml:id" unit="verse">
+            <citeData use="@n" property="tei:num"/>
+          </citeStructure>
         </citeStructure>
-      </citeStructure>
     </citeStructure>
-  </citeStructure>
-  ```
+    </citeStructure>
+    ```
 
-  1. Un acte correspond (`@match`) à chaque `div[@type='acte']`. Il est identifié (`@use`) grâce aux `@xml:id` de ces `div`. Son titre (`citeData[@property='dc:title']` correspond (`@use`) à la valeur de son élément `head`. Un acte contient des scènes.
-  2. Une scène correspond (`@match`) à chaque `div[@type='scene']`. Elle est identifiée (`@use`) grâce aux `@xml:id` de ces `div`. Son titre (`citeData[@property='dc:title']` correspond (`@use`) à la valeur de son élément `head`. Ici, on extrait aussi la liste des personnages impliqués (`citeData[@property='tei:castList']`). Une scène contient des tours de parole.
-  3. Un tour de parole correspond (`@match`) à chaque `sp`. Il est identifié (`@use`) grâce aux `@xml:id` de ces `sp`. Pas de titre, mais un locuteur (`citeData[@property='tei:role']`). Un tour de parole contient des vers.
-  4. Un vers correspond (`@match`) à chaque `l`. Il est identifié (`@use`) grâce aux `@xml:id` de ces `l`. Son numéro (`citeData[@property='tei:num']` correspond (`@use`) à la valeur de son attribut `@n`.
+    1. Un acte correspond (`@match`) à chaque `div[@type='acte']`. Il est identifié (`@use`) grâce aux `@xml:id` de ces `div`. Son titre (`citeData[@property='dc:title']` correspond (`@use`) à la valeur de son élément `head`. Un acte contient des scènes.
+    2. Une scène correspond (`@match`) à chaque `div[@type='scene']`. Elle est identifiée (`@use`) grâce aux `@xml:id` de ces `div`. Son titre (`citeData[@property='dc:title']` correspond (`@use`) à la valeur de son élément `head`. Ici, on extrait aussi la liste des personnages impliqués (`citeData[@property='tei:castList']`). Une scène contient des tours de parole.
+    3. Un tour de parole correspond (`@match`) à chaque `sp`. Il est identifié (`@use`) grâce aux `@xml:id` de ces `sp`. Pas de titre, mais un locuteur (`citeData[@property='tei:role']`). Un tour de parole contient des vers.
+    4. Un vers correspond (`@match`) à chaque `l`. Il est identifié (`@use`) grâce aux `@xml:id` de ces `l`. Son numéro (`citeData[@property='tei:num']` correspond (`@use`) à la valeur de son attribut `@n`.
 
 
 Une structure documentaire déclarée peut avoir plusieurs métadonnées. Ici, une scène (`citeStructure match="div[@type='scene']`) a un titre (`citeData[@property="dc:title"]`) et une liste de personnages (`citeData[@property="tei:castList"]`).

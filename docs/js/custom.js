@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
 // Functions
 
 /**
@@ -45,13 +44,28 @@ function fetchDataForCollapse(collapse) {
         fetch(url)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 cardBody.innerHTML = `<pre><code class="json">${JSON.stringify(data, null, 2)}</code></pre>`;
                 hljs.highlightBlock(cardBody.firstChild, {language: 'json'});
                 //hljs.highlightAll();
             })
             .catch(error => {
-                cardBody.innerHTML = `<p>Failed to fetch data, retry later.</p>`;
+                // fetch xml data
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        // parse xml data
+                        xml = new DOMParser().parseFromString(data, 'text/xml').documentElement.outerHTML;
+                        // highlight xml data
+                        cardBody.innerHTML = `<pre><textarea>${xml}</textarea></pre>`;
+                        hljs.highlightBlock(cardBody.firstChild, {language: 'xml'});
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        cardBody.innerHTML = `<p>Failed to fetch data, retry later.</p>`;
+                    });
             });
+
     }
 }
 
