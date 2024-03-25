@@ -11,9 +11,9 @@ Cette page décrit le *worflow* de publication, les recommandations DoTS de stru
 
 **Projet**. Un "projet" est une collection DTS de premier niveau, un corpus éditorial défini. Par exemple, il est possible de donner accès via un même endpoint DTS à des correspondances ET à des pièces de théâtre : on distinguera donc le projet *Correspondance* et le projet *Théâtre*.
 
-**Dossier de dépôt**. Pour être correctement chargé en base avec les outils DoTS, un *projet* doit être structuré dans un dossier conformément aux recommandations de DoTS. Ce dossier est désigné dans la documentation par l’expression "dossier de dépôt".
+**Dossier de dépôt** ou ***Import folder***. Pour être correctement chargé en base avec les outils DoTS, un *projet* doit être structuré dans un dossier conformément aux recommandations de DoTS. Ce dossier est désigné dans la documentation par l’expression "dossier de dépôt".
 
-**Base de données projet** ou **DB projet**. Chaque *projet* (chaque collection DTS de premier niveau) est importé sous la forme d’une base de données BaseX. Les projets *Correspondance* et *Théâtre* sont chargés sous la forme de deux bases de données distinctes, par exemple respectivement `correspondance` et `theatre`.
+**Base de données projet** ou **DB projet**. Chaque *projet* (chaque collection DTS de premier niveau) est importé sous la forme d’une base de données BaseX. Les projets *Correspondance* et *Théâtre* sont chargés sous la forme de deux bases de données distinctes, par exemple respectivement `letters` et `theater`.
 
 
 ### Workflow
@@ -23,18 +23,18 @@ Cette page décrit le *worflow* de publication, les recommandations DoTS de stru
 
 ???+ note
 
-    DoTS ne fournit pas d'outil pour passer d'un dossier de travail utilisateur à un dossier de dépôt. Mais il est pertinent que le dossier de dépôt serve de dossier de travail.
+    DoTS ne fournit pas d'outil pour passer d'un dossier de travail utilisateur à un dossier de dépôt. Cependant, la structure de ce dossier de dépôt est conçue pour faciliter le travail éditorial. Pour optimiser le *workflow*, nous recommandons donc de travailler autant que possible à l’édition des sources XML/TEI directement dans le dossier de dépôt.
 
 
 ## Préparer les données
 
 ### Préparer le dossier de dépôt
 
-Un [Dossier de dépôt](dots-project-folder.md) contient :
+Un [dossier de dépôt](dots-project-folder.md) contient :
 
-- obligatoirement les sources XML/TEI du projet (dossier `data/`), organisées selon la hiérarchie de votre choix,
-- optionnellement les métadonnées décrivant les collections et les documents (dossier `metadata/`). Si présent, le document XML `dots_metadata_mapping.xml` est obligatoire.
-- optionnellement un `README.md` documentant le dossier de dépôt.
+- **obligatoirement** les sources XML/TEI du projet (dossier `data/`), organisées selon la hiérarchie de votre choix.
+- **optionnellement** les métadonnées décrivant les collections, documents et passages (dossier `metadata/`). Si présent, le document XML `dots_metadata_mapping.xml` est obligatoire.
+- **optionnellement** un `README.md` documentant le dossier de dépôt.
 
 
 ???+ info "Modèle"
@@ -48,7 +48,7 @@ Un [Dossier de dépôt](dots-project-folder.md) contient :
 			collection_2/				# Collection 2
 				file_100.xml			# file_100 appartient par défaut à la collection 2
 				file_101.xml			# idem
-		metadata/						# OPTIONNEL. Métadonnées des collections et des documents
+		metadata/						# OPTIONNEL. Métadonnées des ressources
 			dots_metadata_mapping.xml	# Déclaration du chemin des métadonnées
 			metadata_1.tsv				# Un fichier de métadonnées
 			metadata_2.tsv				# idem
@@ -66,124 +66,105 @@ Un [Dossier de dépôt](dots-project-folder.md) contient :
 
 ### Déclarer les passages
 
-L'utilisateur peut décrire la structure éditoriale de chacun de ses documents et définir l'accès aux passages (voir la page [Dossier de dépôt](dots-project-folder.md/#passages) pour plus de précisions).
-
-Il doit pour cela faire usage de l'élément TEI <a href="https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html" target="_blank">`tei:citeStructure`</a>.
+L'utilisateur peut décrire la structure éditoriale de chaque document et définir l'accès aux passages. Il doit pour cela faire usage de l'élément TEI <a href="https://tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeStructure.html" target="_blank">`tei:citeStructure`</a> (voir [dossier de dépôt](dots-project-folder.md/#passages)).
 
 
 ### Exemples
 
-**Liens au cookbook :**
+Pour bien illustrer toutes les potentialités offertes par DTS et DoTS, un [cookbook](cookbook/index.md) est disponible, avec plusieurs exemples :
 
-- [périodiques](cookbook.md/#publier-un-periodique)
-- cartulaire / registre
-- théâtre
-- correspondance
-- roman
-- poésie
-- dictionnaire
+- [publier un périodique](cookbook/periodical.md)
+- [publier des pièces de théâtre](cookbook/theater.md)
 
 
-## Charger un projet
+## Gestion d’un projet
 
-Pour lancer les commandes, il est nécessaire d'accèder au dossier de `BaseX`, puis de se déplacer dans le dossier `bin/`.
+Pour lancer les commandes, il est nécessaire se déplacer dans le dossier `dots/scripts`.
 
-### Initialisation de la DB dots
-
-Cette première commande permet d'initialiser la base de données dots. Elle sert à relier chaque ressource identifiée (collection ou document) à sa base de données *projet* d'appartenance.
-
-```{.Bash .copy}
-cd path/to/basex/bin
+```bash
+cd path/to/basex/webapp/dots/scripts
 ```
 
-```{.Bash .copy} 
-bash basex ../webapp/dots/scripts/dots_db_init.xq
+### Création d’un projet
+
+Cette commande crée un projet DoTS à partir d’un dossier de dépôt.
+
+
+```{.Bash}
+usage: project_create.sh
+	--project_dir_path string
+	--top_collection_id string
+	--db_name string 
 ```
 
-### Création de la base de données *projet*
+Arguments :
 
-Cette commande permet de créer automatiquement la base de données *projet*.
-On doit spécifier les arguments suivants :
-
-- `dbName` : nom de la base de données BaseX du *projet*
-- `projectDirPath` : chemin absolu vers le *dossier de dépôt* du projet
-
-```{.Bash .copy}
-cd path/to/basex/bin
-```
-
-```{.Bash .copy}
-bash basex -b dbName=db_name -b projectDirPath=/path/to/dossier/de/depot ../webapp/dots/scripts/project_db_init.xq
-```
-
-La base de données *projet* est créée en conservant la structure du paquet de dépôt en collections et sous-collections. 
-
-### Création des registres du *projet*
+- `project_dir_path` : chemin absolu en local vers le *dossier de dépôt* du projet
+- `top_collection_id` : identifiant DTS de la collection racine du *projet*
+- `db_name` : nom de la base de données du *projet*
 
 !!! warning
 
 	**La base de données du *projet* ne DOIT PAS être ouverte dans le GUI BaseX.**
 
-Cette commande permet de créer les registres dots dans la base de données *projet*. Ce sont ces registres qui fournissent les éléments de réponse au résolveur DTS.
 
-On doit spécifier les arguments suivants :
-
-- `dbName` : nom de la base de données BaseX du *projet*
-- `topCollectionId` : identifiant DTS de la collection racine du *projet*
+Exemple : 
 
 ```{.Bash .copy}
-bash basex -b dbName=db_name -b topCollectionId=top_collection_id ../webapp/dots/scripts/project_registers_create.xq
+bash project_create.sh --project_dir_path '/path/to/import/folder' --top_collection_id 'id' --db_name 'name'
 ```
 
-### Mise à jour du switcher DoTS
+
+NB. La base de données *projet* est créée en conservant la structure du dossier de dépôt en collections et sous-collections. 
+
+NB. Les ressources de votre projet sont désormais décrites et accessibles via les endpoints DTS fournis par DoTS. Les *endpoints* ouverts sont documentés dans la section [DTS API](api.md).
+
+
+### Création de nouvelles collections
+
+DoTS permet d’associer un document à plusieurs collections. Pour un projet, cette commande permet de créer de nouvelles collection et d’y associer des documents.
 
 !!! warning
 
-	**La mise à jour du switcher dots doit être réalisée après la création des registres du projet (commande précédente de création de la db project).**
+	**Les documents doivent être déjà enregistrés dans la base de données du projet.**
 
-Le switcher de la base de données DoTS (`dots_db_switcher.xml`) sert à associer les identifiants des ressources (collections et documents) à leur base de données de *projet* d’appartenance.
-
-On doit spécifier l’argument suivant :
-
-- `dbName` : nom de la base de données BaseX du *projet* à parcourir pour mise à jour du switcher. Ainsi, on peut mettre à jour la base pour un unique *projet*.
 
 ```{.Bash .copy}
-bash basex -b dbName=db_name ../webapp/dots/scripts/dots_switcher_update.xq
+bash custom_collections.sh --collections_tsv_path string
 ```
 
-Les ressources de votre projet sont désormais décrites et accessibles via les endpoints DTS fournis par DoTS. La description des réponses d'API est disponible à cette adresse: [résolveur](api.md).
+Argument :
+
+- `collections_tsv_path` : chemin absolu en local vers le fichier TSV décrivant ces collections. Ce fichier doit être conforme aux recommandations – voir [Dossier de dépôt/Autres collections](http://127.0.0.1:8000/dots-project-folder/#autres-collections).
 
 
-## Gérer un projet
+### Suppression d’un projet
 
-### Créer de nouvelles collections et y attacher des documents (existants)
+Cette commande efface des registres DoTS les ressources du projet et supprime optionnellement sa base de données.
 
-```{.Bash .copy}
-bash basex -b srcPath=/path/to/custom_collections.tsv ../webapp/dots/scripts/create_custom_collections.xq 
+```{.Bash}
+usage: project_delete.sh
+	--db_name string 
+	--db_delete boolean
 ```
 
-Le fichier `custom_collections.tsv` indique comment créer de nouvelles collections et lier des documents (déjà existants) à ces collections.
+Arguments :
 
-Plus d'informations sont disponibles à cette adresse: [dossier de dépôt](dots-project-folder.md/#autres-collections).
+- `db_name` : nom de la base de données du *projet*
+- `db_delete` : booléen
+	- `true` (*default*): la base de données du projet est supprimée
+	- `false`: la base de données du projet est conservée (seules les registres sont mis à jour).
 
-### Supprimer les registres DoTS d’un projet
 
 !!! warning
 
-	**Attention :** après avoir utilisé cette commande, le résolveur `dots` ne fournit plus de réponse d'API pour ce *projet*.
+	**La base de données du *projet* ne DOIT PAS être ouverte dans le GUI BaseX.**
 
-Cette commande permet de supprimer toutes les ressources qui appartiennent à la *base de données projet* dans le switcher de la db `dots`. 
 
-Si la valeur du paramètre `option` est `true`, elle permet aussi de supprimer la *base de données projet* ; elle se contente sinon de supprimer ses registres dots.
-
-On doit spécifier les arguments suivants :
-
-- `dbName` : nom de la base de données BaseX du projet à parcourir suppression des registres DoTS.
-- `option` : valeur booléenne (`false` par défaut). `true` permet de supprimer la base de données *projet* et `false` se contente de supprimer les registres `dots` du *projet*. 
+Exemple :
 
 ```{.Bash .copy}
-bash basex -b dbName=db_name  -b option=true / false../webapp/dots/scripts/dots_registers_delete.xq
+bash project_delete.sh --db_name 'name'
 ```
-
 
 

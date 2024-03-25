@@ -1,26 +1,24 @@
 site_name: My Docs
 site_name: DoTS documentation
 site_url: https://dots-documentation.github.io/
-copyright: © 2023-2024 DoTS
 
 nav:
     - DoTS: index.md
     - Publier un corpus: publishing-workflow.md
     - Dossier de dépôt: dots-project-folder.md
-    - DoTS Cookbook: cookbook.md
+    - Cookbook:
+        - cookbook/index.md
+        - Périodiques: cookbook/periodical.md
+        - Théâtre: cookbook/theater.md
     - DTS API: api.md
 
 theme:
   name: material
-  logo: assets/dots-logo-retro.drawio.png
-  custom_dir: docs/overrides
+  logo: img/logo-dots.png
   features:
+    - navigation.indexes
     - content.code.annotate
 
-extra:
-  annotate:
-    json: [.s2]
-    xml: [.w]
 
 extra_css:
   - css/custom.css
@@ -47,5 +45,3 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - attr_list
-  - md_in_html
-

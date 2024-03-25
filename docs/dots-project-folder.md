@@ -6,7 +6,7 @@ Pour tirer avantage de l’ensemble des outils de la suite DoTS, votre dossier d
 
 Ce document détaille en particulier les règles de structuration de ce dossier de dépôt ainsi que les méthodes disponibles pour déclarer les métadonnées des ressources publiées (collections, documents et fragments).
 
-Des [cookbooks](./cookbook.md) illustrent la mise en œuvre de ces recommandations, pour différents types de publication, genres littéraires et choix documentaires.
+Des [cookbooks](./cookbook/index.md) illustrent la mise en œuvre de ces recommandations, pour différents types de publication, genres littéraires et choix documentaires.
 
 
 ## Structure du dossier de dépôt
