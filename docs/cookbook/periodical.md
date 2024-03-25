@@ -169,6 +169,16 @@ Il permet de déclarer la structure du document TEI et de retrouver des fragment
   url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_18")
 }}
 
+#### Créer la base de données
+
+Pour créer la base de données, il suffit de saisir la commande :
+
+```bash
+bash project_create.sh
+  --project_dir_path 'path/to/dots_documentation/data_test/periodiques/encpos_by_abstract'
+  --top_collection_id 'ENCPOS'
+  --db_name 'encpos'
+```
 
 #### Ajout d’une collection thématique
 
@@ -178,11 +188,19 @@ Il est nécessaire pour cela de préparer un tableur TSV sur le modèle de `cust
 
 Argument à spécifier :
 
-- `srcPath` : chemin vers le tableur TSV
+- `collections_tsv_path` : chemin absolu vers le fichier TSV de métadonnées de collections
 
 ```{.Bash .copy} 
-bash basex -b srcPath=/path/to/tsv ../webapp/dots/scripts/create_custom_collections.xq 
+usage: custom_collections.sh 
+    --collections_tsv_path string 
 ```
+
+Exemple
+
+```{Bash}
+bash custom_collections.sh --collections_tsv_path 'path/to/tsv/file'
+```
+
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
   url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=normandy")
@@ -280,5 +298,21 @@ L'élément `<citeStructure>` ( <a href="https://www.tei-c.org/release/doc/tei-p
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_c2&ref=3.1")
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_c2&ref=2320")
 }}
+
+{{ macro_collapse_card_api_doc(
+  verb_http="get", 
+  url="https://dev.chartes.psl.eu/dots/api/dts/document?id=ENCPOS_1972_c2&ref=2320")
+}}
+
+#### Créer la base de données
+
+Pour créer la base de données, il suffit de saisir la commande :
+
+```bash
+bash project_create.sh
+  --project_dir_path 'path/to/dots_documentation/data_test/periodiques/encpos_by_volume'
+  --top_collection_id 'ENCPOS_c2'
+  --db_name 'encpos_c2'
+```

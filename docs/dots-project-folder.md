@@ -169,7 +169,7 @@ Identifiant :
 
 Titre (`dc:title`) :
 
-1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir [surcharge]())
+1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir [surcharge](#surcharge-et-metadonnees-optionnelles))
 1. nom du dossier de collection dans `data/`
 
 ???+ note
@@ -185,7 +185,7 @@ Identifiant :
 
 Titre (`dc:title`) :
 
-1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir surcharge)
+1. valeur référencée dans `metadata/dots_metadata_mapping.xml` (voir [surcharge](#surcharge-et-metadonnees-optionnelles))
 1. valeur de `/TEI/teiHeader/fileDesc/titleStmt/title[@type='main']`
 1. valeur de `/TEI/teiHeader/fileDesc/titleStmt/title[1]`
 
@@ -203,7 +203,10 @@ DTS impose la déclaration d’un identifiant. DoTS attribue automatiquement aux
 
 Pour les collections et les documents, le fichier `metadata/dots_metadata_mapping.xml` permet :
 
-- de surcharger le titre (`dc:title`) attribué par défaut par DoTS ;
+- de surcharger le titre (`dc:title`) attribué par défaut par DoTS
+
+Pour les collections, les documents et les passages, le fichier `metadata/dots_metadata_mapping.xml` permet :
+
 - d’appeler optionnellement toutes les métadonnées souhaitées. Et ces métadonnées peuvent être inscrites directement dans le fichier `metadata/dots_metadata_mapping.xml` et/ou dans le `teiHeader` des documents et/ou déportées dans un tableur.
 
 
@@ -261,7 +264,7 @@ Certaines métadonnées, telle qu’une licence, peuvent être partagées par l�
 
 |attribut|définition|valeur|commentaire|
 |--------|----------|------|-----------|
-|`@scope`|type des ressources décrites|`collection` ou `document`||
+|`@scope`|type des ressources décrites|`collection` ou `document` ou `fragment`||
 |`resourceId`|ids des ressources décrites|`all`|la métadonnée décrit toutes les ressources d’un type|
 
 <!--
@@ -280,13 +283,13 @@ Certaines métadonnées, telle qu’une licence, peuvent être partagées par l�
 
 #### Métadonnées déportées dans un tableur TSV
 
-Les métadonnées des documents et des collections peuvent être déportées dans un tableur. `dots_metadata_mapping.xml` permet de les appeler.
+Les métadonnées des documents, des collections et des fragments peuvent être déportées dans un tableur. `dots_metadata_mapping.xml` permet de les appeler.
 
 !!! abstract "Template"
 
 	```xml
 	<ns:property
-		scope="collection|document"
+		scope="collection|document|fragment"
 		format="tsv"
 		source="./metadata_file.tsv"
 		resourceId="resourceId_column-header"
@@ -315,13 +318,11 @@ Les métadonnées des documents et des collections peuvent être déportées dan
 
 |attribut|définition|valeur|commentaire|
 |--------|----------|------|-----------|
-|`@scope`|type des ressources décrites|`collection` ou `document`||
+|`@scope`|type des ressources décrites|`collection` ou `document` ou `fragment`||
 |`@format`|format du fichier de métadonnées appelé|`tsv`||
 |`@source`|chemin vers le fichier de métadonnées|`path/to/file`||
 |`@resourceId`|nom de la colonne référençant l’id de la ressource décrite|||
 |`@value`|nom de la colonne contenant la valeur de la métadonnée|||
-
-
 
 #### Métadonnées inscrites dans la source XML/TEI
 

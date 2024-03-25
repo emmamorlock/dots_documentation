@@ -117,7 +117,9 @@ bash project_create.sh --project_dir_path '/path/to/import/folder' --top_collect
 
 NB. La base de données *projet* est créée en conservant la structure du dossier de dépôt en collections et sous-collections. 
 
-NB. Les ressources de votre projet sont désormais décrites et accessibles via les endpoints DTS fournis par DoTS. Les *endpoints* ouverts sont documentés dans la section [DTS API](api.md).
+!!! success
+
+	Les ressources de votre projet sont désormais décrites et accessibles via les endpoints DTS fournis par DoTS. Les *endpoints* ouverts sont documentés dans la section [DTS API](api.md).
 
 
 ### Création de nouvelles collections

@@ -192,7 +192,7 @@ Une structure documentaire déclarée peut avoir plusieurs métadonnées. Ici, u
 
 #### XQuery
 
-Les *Guidelines TEI* précisent que la valeur attendue de l’attribut [`@use`](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-att.citeStructurePart.html) de l’élément [`citeData`](https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeData.html) est une expression XPath pointant vers la valeur de la métadonnée définie.
+Les *Guidelines TEI* précisent que la valeur attendue de l’attribut <a target="_blank" href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-att.citeStructurePart.html">`@use`</a> de l’élément <a target="_blank" href="https://www.tei-c.org/release/doc/tei-p5-doc/en/html/ref-citeData.html">`citeData`</a> est une expression XPath pointant vers la valeur de la métadonnée définie.
 
 Prenons l’exemple des tours de parole (`sp`) de *Phèdre* :
 
@@ -288,7 +288,7 @@ Puis de lancer la commande suivante.
 
 Argument à spécifier :
 
-- `srcPath` : chemin vers le tableur TSV
+- `collections_tsv_path` : chemin absolu vers le fichier TSV de métadonnées de collections
 
 ```{.Bash .copy} 
 bash custom_collections.sh --collections_tsv_path path/to/tsv/file
