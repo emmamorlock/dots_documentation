@@ -115,7 +115,7 @@ Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
 - lister et qualifier les métadonnées partagées via le endpoint DTS Collection ;
 - déclarer leur localisation.
 
-Ces métadonnées peuvent être inscrites "en dure" dans le document `dots_metadata_mapping.xml`. Autrement dit, la valeur est inscrite directement dans le document XML.
+Ces métadonnées peuvent être inscrites "en dur" dans le document `dots_metadata_mapping.xml`. Autrement dit, la valeur est inscrite directement dans le document XML.
 
 Elles peuvent être inscrites dans la source XML/TEI, généralement dans le `teiHeader`. Dans ce cas, la localisation est inscrite en valeur de l’attribut `@xpath`.
 
