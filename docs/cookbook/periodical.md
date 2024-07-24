@@ -63,7 +63,7 @@ Il convient de déclarer chacune de ces unités documentaires.
 |collection des positions|collection|file dir |`data/`|
 |volume annuel     |collection      |file dir |`data/ENCPOS_AAAA/`|
 |position          |document        |TEI file |`data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml`|
-|section           |fragment        |TEI node |`/TEI/text/boby/div`|
+|section           |fragment        |TEI node |`/TEI/text/body/div`|
 
 #### Corpus de test
 
