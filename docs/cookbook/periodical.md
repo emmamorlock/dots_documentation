@@ -166,7 +166,7 @@ Il permet de déclarer la structure du document TEI et de retrouver des fragment
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_18")
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=ENCPOS_1972_18&down=1")
 }}
 
 #### Créer la base de données
@@ -267,7 +267,7 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 - Chaque position est dans ce cas un fragment du document.
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
 }}
 
 #### Dossier `metadata/`
@@ -298,12 +298,12 @@ L'élément `<citeStructure>` ( <a href="https://www.tei-c.org/release/doc/tei-p
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=ENCPOS_1972_c2&ref=2320")
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=ENCPOS_1972_c2&ref=2320")
 }}
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/document?id=ENCPOS_1972_c2&ref=2320")
+  url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=ENCPOS_1972_c2&ref=2320")
 }}
 
 #### Créer la base de données

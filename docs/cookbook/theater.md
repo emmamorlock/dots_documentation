@@ -253,7 +253,7 @@ Ces métadonnées – label et liage Wikidata du locuteur – sont ainsi accessi
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=moliere_tartuffe&ref=a3-s2")
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=moliere_tartuffe&ref=a3-s2")
 }}
 
 
@@ -323,7 +323,7 @@ Quelques exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?id=moliere_tartuffe&down=3&filter=tei:role=Tartuffe")
+  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=moliere_tartuffe&down=3&filter=tei:role=Tartuffe")
 }}
 
 
@@ -331,7 +331,7 @@ Quelques exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/document?id=moliere_tartuffe&filter=tei:role=Tartuffe")
+  url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe")
 }}
 
 
@@ -339,5 +339,5 @@ Quelques exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/document?id=moliere_tartuffe&filter=tei:role=Tartuffe&format=html")
+  url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe&format=html")
 }}
