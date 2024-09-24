@@ -193,6 +193,7 @@
             "name": "ref",
             "in": "query",
             "required": false,
+            "description": "NOT used with start and end",
             "schema": {
               "type": "string"
             }
@@ -201,6 +202,7 @@
             "name": "start",
             "in": "query",
             "required": false,
+            "description": "NOT used if a ref is specified, requires end as well",
             "schema": {
               "type": "string"
             }
@@ -209,6 +211,7 @@
             "name": "end",
             "in": "query",
             "required": false,
+            "description": "NOT used if a ref is specified, requires start as well",
             "schema": {
               "type": "string"
             }
