@@ -232,7 +232,6 @@
               "type": "string",
               "enum": [
                 "html",
-                "txt",
                 "xml"
               ]
             }
