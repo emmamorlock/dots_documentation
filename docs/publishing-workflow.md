@@ -79,7 +79,7 @@ Pour bien illustrer toutes les potentialités offertes par DTS et DoTS, un [cook
 
 ## Gestion d’un projet
 
-Pour lancer les commandes, il est nécessaire se déplacer dans le dossier `dots/scripts`.
+Pour lancer les commandes, il est nécessaire de se déplacer dans le dossier `dots/scripts`.
 
 ```bash
 cd path/to/basex/webapp/dots/scripts

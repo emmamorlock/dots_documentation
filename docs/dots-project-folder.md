@@ -30,7 +30,7 @@ Des [cookbooks](./cookbook/index.md) illustrent la mise en œuvre de ces recomma
 	```
 
 
-- `nom_projet/`: racine du dossier de dépôt. Son nom est libre. Au chargement en base, vous pourrez spécifier le nom de la base de données BaseX, ainsi que l’identifiant DTS attribué à la collection racine. Vous pourrez aussi lui attribuer un titre.
+- `nom_projet/`: racine du dossier de dépôt. Son nom est libre. Au chargement en base, vous pourrez spécifier le nom de la base de données BaseX, ainsi que l’identifiant DTS attribué à la collection racine.
 
 - `data/`: les documents XML/TEI. Ce dossier est **obligatoire**. Il contient les sources XML/TEI de votre projet organisées selon la hiérarchie de votre choix. Cette hiérarchie représente les collections **par défaut** de votre projet. Par exemple, ici, les documents `file_1.xml` et `file_2.xml` appartiennent à la collection `collection_1`.
 
@@ -174,7 +174,9 @@ Titre (`dc:title`) :
 
 ???+ note
 	
-	Il est recommandé de déclarer dans un fichier TSV le titre des collections (ainsi que toutes les métadonnées utiles à leur description).
+	Il est recommandé de déclarer dans un fichier TSV le titre des collections (ainsi que toutes les métadonnées utiles à leur description). 
+    
+    Il est utile de donner aussi le titre du projet (collection de premier niveau).
 
 #### Pour un document
 
@@ -236,7 +238,7 @@ Pour déclarer une métadonnée, c'est le nom de l’élément XML avec le préf
 Ces métadonnées peuvent être inscrites :
 
 - dans le fichier `dots_metadata_mapping.xml` pour les valeurs communes à l’ensemble des collections ou à l’ensemble des documents.
-- dans un fichier TSV (pour les collections et les documents)
+- dans un fichier TSV (pour les collections, les documents et les passages)
 - dans le fichier XML/TEI (pour les seuls documents)
 
 #### Métadonnées inscrites dans `dots_metadata_mapping.xml`
@@ -248,7 +250,7 @@ Certaines métadonnées, telle qu’une licence, peuvent être partagées par l�
 
 	```xml
 	<ns:property
-		scope="collection|document"
+		scope="collection|document|fragment"
 		resourceId="all"
 		value=".">property value</ns:property>
 	```
@@ -262,10 +264,10 @@ Certaines métadonnées, telle qu’une licence, peuvent être partagées par l�
 		resourceId="all">https://creativecommons.org/licenses/by-nc-sa/4.0/</dct:license>
 	```
 
-|attribut|définition|valeur|commentaire|
-|--------|----------|------|-----------|
-|`@scope`|type des ressources décrites|`collection` ou `document` ou `fragment`||
-|`resourceId`|ids des ressources décrites|`all`|la métadonnée décrit toutes les ressources d’un type|
+|attribut|définition|valeur| commentaire                                                |
+|--------|----------|------|------------------------------------------------------------|
+|`@scope`|type des ressources décrites|`collection` ou `document` ou `fragment`|                                                            |
+|`resourceId`|ids des ressources décrites|`all`| la métadonnée décrit toutes les ressources d’un type donné |
 
 <!--
 **Modèle**
@@ -374,7 +376,7 @@ Mais il est toujours possible de préciser le type de valeur attendue pour la m�
 
 L'utilisateur peut vouloir plusieurs valeurs pour une même métadonnée. Par exemple, utiliser plusieurs fois la métadonnée `dc:creator` afin de renvoyer à plusieurs référentiels.
 
-Dans ce cas de figure, il est **obligatoire** d'ajouter un attribut supplémentaire `@key` qui permet de créer une **liste** de valeurs dans la réponse d'API en JSON. Chaque élément de cette liste est précédée d'une *clef* dont la valeur est définie dans cet attribut `@key`.
+Dans ce cas de figure, il est **obligatoire** d'ajouter un attribut supplémentaire `@key` qui permet de créer une **liste** de valeurs dans la réponse d'API en JSON. Chaque élément de cette liste est précédée d'une *clef* dont la valeur est spécifiée dans cet attribut `@key`.
 
 
 ##### Concaténation de chaînes de caractères

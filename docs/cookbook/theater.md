@@ -17,7 +17,7 @@ Pour des besoins de recherche, on peut également chercher à extraire automatiq
 
 Nous prenons ici l’exemple de pièces de Molière et de Racine.
 
-Les fichiers partagés du corpus de tests sont issus du site [Théâtre classique](https://www.theatre-classique.fr/). Ils ont été modifiés pour garantir la validation XML/TEI et enrichis avec des identifiants et des liages pour servir la démonstration DoTS.
+Les fichiers partagés du corpus de tests sont issus du site <a target="_blank" href="https://www.theatre-classique.fr/">Théâtre classique</a>. Ils ont été modifiés pour garantir la validation XML/TEI et enrichis avec des identifiants et des liages pour servir la démonstration DoTS.
 
 
 ## Définition du modèle documentaire
@@ -158,7 +158,7 @@ L'élément <a href="https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-ci
 
 Cependant, dans le cas d’une édition théâtrale, sa déclaration permet de tirer parti du balisage éditorial XML/TEI. Grâce à DTS, chaque acte, scène, tour de parole, vers peut être cité et republié.
 
-Prenons l’exemple de *Phèdre* de Racine. La structure imbriquée du `citeStructure` rend compte de la hiérarchie éditoriale : acte > scène > tout de parole > vers.
+Prenons l’exemple de *Phèdre* de Racine. La structure imbriquée du `citeStructure` rend compte de la hiérarchie éditoriale : acte > scène > tour de parole > vers.
 
 ???+ example "Déclaration de la structure éditoriale de *Phèdre* de Racine"
 
@@ -326,7 +326,8 @@ Quelques exemples :
   url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=moliere_tartuffe&down=3&filter=tei:role=Tartuffe")
 }}
 
-
+<!--
+Mettre à jour DoTS sur le serveur de dev avant de décommenter ces lignes (code actuellement non fonctionnel)
 **Le texte de tous les tours de parole de Tartuffe**
 
 {{ macro_collapse_card_api_doc(
@@ -341,3 +342,4 @@ Quelques exemples :
   verb_http="get", 
   url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe&format=html")
 }}
+-->
