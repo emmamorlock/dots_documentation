@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://dots.chartes.psl.eu/demo/api/dts/"
+      "url": "https://dots.chartes.psl.eu/demo/api/"
     }
   ],
   "paths": {
