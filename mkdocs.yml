@@ -4,7 +4,8 @@ site_url: https://dots-documentation.github.io/
 copyright: © 2023-2024 DoTS
 
 nav:
-    - DoTS: index.md
+    - Présentation: index.md
+    - Installation: installation.md
     - Publier un corpus: publishing-workflow.md
     - Dossier de dépôt: dots-project-folder.md
     - Cookbook:

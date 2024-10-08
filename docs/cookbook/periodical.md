@@ -98,7 +98,7 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=ENCPOS_1849")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=ENCPOS_1849")
 }}
 
 - Nous verrons qu’un document peut appartenir à plusieurs collections.
@@ -142,7 +142,7 @@ Exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=ENCPOS_1972")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=ENCPOS_1972")
 }}
 
 ???+ note
@@ -166,7 +166,7 @@ Il permet de déclarer la structure du document TEI et de retrouver des fragment
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=ENCPOS_1972_18&down=1")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=ENCPOS_1972_18&down=1")
 }}
 
 #### Créer la base de données
@@ -203,12 +203,12 @@ bash custom_collections.sh --collections_tsv_path 'path/to/tsv/file'
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=normandy")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=normandy")
 }}
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=ENCPOS_1849_04&nav=parents")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=ENCPOS_1849_04&nav=parents")
 }}
 
 ### Cas 2. Un article est un fragment
@@ -261,13 +261,13 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 - Ici, le document `ENCPOS_1849_c2.xml`, par exemple, regroupe toutes les positions de 1849.
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=ENCPOS_1972_c2")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=ENCPOS_1972_c2&down=1")
 }}
 
 - Chaque position est dans ce cas un fragment du document.
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=ENCPOS_1972_c2&ref=ENCPOS_1972_18")
 }}
 
 #### Dossier `metadata/`
@@ -278,7 +278,7 @@ Il contient les métadonnées descriptives : `default_resources_titles.tsv` per
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=ENCPOS_c2")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=ENCPOS_c2")
 }}
 
 #### Déclaration des fragments
@@ -298,12 +298,12 @@ L'élément `<citeStructure>` ( <a href="https://www.tei-c.org/release/doc/tei-p
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=ENCPOS_1972_c2&ref=2320")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=ENCPOS_1972_c2&ref=2320")
 }}
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=ENCPOS_1972_c2&ref=2320")
+  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=ENCPOS_1972_c2&ref=2320")
 }}
 
 #### Créer la base de données

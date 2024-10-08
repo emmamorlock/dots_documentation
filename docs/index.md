@@ -1,79 +1,41 @@
-# DoTS
+# Présentation
 
 <img src="./assets/dots-logo-retro.drawio.svg" alt="dots-logo" width="30%" style="display: block; margin: 0 auto;">
 
-## What is DoTS?
+DoTS est une implémentation en XQuery de la spécification d'API DTS (<a href="https://distributed-text-services.github.io/specifications/" target="_blank">Distributed Text Services</a>), adossée au logiciel de base de données XML <a href="https://basex.org/" target="_blank">BaseX</a>.
 
-DoTS is an XQuery implementation of DTS using a <a href="https://basex.org/" target="_blank">BaseX</a> backend.
+Cet outil permet de publier aisément des sources en XML/TEI selon les principes FAIR (Findable, Accessible, Interoperable, Reusable).
 
-!!! Note
+La présente documentation indique :
 
-    **DoTS supports only DTS GET requests** for browsing collections, document retrieval and navigation.
+- [comment installer DoTS](installation.md),
+- et comment [organiser ses sources](dots-project-folder.md) TEI pour [publier un corpus](publishing-workflow.md).
 
-## What is DTS?
+## Code source
 
-The <a href="https://distributed-text-services.github.io/specifications" target="_blank">Distributed Text Services</a> (DTS) Specification defines an API for working with collections of text as machine-actionable data.
+Le code source de **DoTS** est disponible sous license MIT sur github à l'adresse suivante : <a href="https://github.com/chartes/dots" target="_blank">https://github.com/chartes/dots</a>.
 
-Publishers of digital text collections can use the DTS API to help them make their textual data Findable, Accessible, Interoperable and Reusable (<a href="https://www.ccsd.cnrs.fr/principes-fair/" target="_blank">FAIR</a>).
+La version actuelle respecte la dernière version 1-alpha de la spécification DTS.
 
-## Capabilities
+## Testez DoTS !
 
-Using DoTS, you can
+Si vous souhaitez tester notre résolveur DTS, les différents endpoints sont présentés [ici](api.md). 
+Le serveur de démo est aussi directement accessible à l'adresse suivante : <a href="https://dots.chartes.psl.eu/demo/api/dts/" target="_blank">https://dots.chartes.psl.eu/demo/api/dts/</a>.
 
-- with the DTS Collection endpoint:
-	- Retrieve lists of collection members.
-	- Retrieve metadata about individual collection items.
-- with the DTS Navigation endpoint:
-	- Retrieve lists of citeable passages within a text.
-	- Retrieve a range of citeable passages within a text.
-	- Retrieve metadata about the citation structure of a document.
-- with the DTS Document endpoint:
-	- Retrieve a single text passage at any level of the citation hierarchy.
-	- Retrieve a range of text passages with a clearly defined start and end passage.
-	- Retrieve an entire text.
+Les corpus qui s'y trouvent sont ceux présentés dans le [cookbook](cookbook/index.md) de cette documentation.
 
-## Install
+D'autres exemples vont venir en complément.
 
-### BaseX
+## Corpus disponibles
 
-Download BaseX (>= 10.0): <a href="https://basex.org/download/" target="_blank">https://basex.org/download/</a>
+### Corpus de l'école nationale des chartes
 
-!!! info
+Tous les corpus mis à disposition par l'école sont disponibles sur notre serveur <a href="https://dots.chartes.psl.eu/api/dts/collection" target="_blank">DoTS</a>.
 
-	- Prefer `ZIP Package`, which ensure that you will find the complete BaseX folder.
-	- Requirements : <a href="https://docs.basex.org/wiki/Startup#Startup" target="_blank">https://docs.basex.org/wiki/Startup#Startup</a>
+Actuellement,seul le corpus des <a href="https://dots.chartes.psl.eu/api/dts/collection?id=ENCPOS" target="_blank">Positions de thèses de l'École nationale des chartes</a> est accessible, accompagné d'une <a href="https://theses.chartes.psl.eu/" target="_blank">application d'édition</a>. 
 
+### Autres corpus
 
-### DoTS
+DoTS étant un outil libre, d'autres institutions (particulièrement nos partenaires de Biblissima+) peuvent mettre leur corpus à disposition.
 
-DoTS must be installed and started directly in the BaseX folder. 
-
-```Bash
-cd path/to/basex/webapp
-```
-
-```{.Bash .copy}
-git clone https://github.com/chartes/dots.git
-```
-
-The structure of your BaseX should be as follows:
-
-
-	basex/				# BaseX root dir.
-		bin/			# Start scripts (GUI, HTTP server, etc.).
-		data/			# Database directory.
-		webapp/			# Web Application directory.
-			dots/		# DoTS module (DTS reslover, etc.).
-		...				# Others BaseX files.
-
-## Start DTS resolver
-
-```Bash
-cd path/to/basex/bin
-```
-
-```{.Bash .copy}
-bash basexhttp
-```
-
-By default, the base DTS API enpoint is available at <a href="http://localhost:8080/api/dts/" target="_blank">http://localhost:8080/api/dts/</a>.
+Si vous avez partagé des corpus TEI grâce à DoTS, n'hésitez pas à nous le faire savoir !

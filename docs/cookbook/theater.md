@@ -106,7 +106,7 @@ Le corpus de test est disponible : <a href="https://github.com/chartes/dots_docu
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=moliere")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere")
 }}
 
 Un document pourra être inscrit dans d’autres collections ultérieurement. 
@@ -140,14 +140,14 @@ Pour une collection : `api/dts/collection?id={collection_id}`, par exemple :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=theater")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=theater")
 }}
 
 Pour une pièce : `api/dts/collection?id={document_id}`, par exemple :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=moliere_tartuffe")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere_tartuffe")
 }}
 
 
@@ -253,7 +253,7 @@ Ces métadonnées – label et liage Wikidata du locuteur – sont ainsi accessi
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=moliere_tartuffe&ref=a3-s2")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&ref=a3-s2")
 }}
 
 
@@ -296,12 +296,12 @@ bash custom_collections.sh --collections_tsv_path path/to/tsv/file
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=comedie")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=comedie")
 }}
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=moliere_tartuffe&nav=parents")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere_tartuffe&nav=parents")
 }}
 
 
@@ -315,7 +315,7 @@ Quelques exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/collection?id=moliere&filter=dc:date=1669")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere&filter=dc:date=1669")
 }}
 
 
@@ -323,16 +323,14 @@ Quelques exemples :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/navigation?resource=moliere_tartuffe&down=3&filter=tei:role=Tartuffe")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=3&filter=tei:role=Tartuffe")
 }}
 
-<!--
-Mettre à jour DoTS sur le serveur de dev avant de décommenter ces lignes (code actuellement non fonctionnel)
 **Le texte de tous les tours de parole de Tartuffe**
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe")
+  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe")
 }}
 
 
@@ -340,6 +338,9 @@ Mettre à jour DoTS sur le serveur de dev avant de décommenter ces lignes (code
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dev.chartes.psl.eu/dots/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe&format=html")
+  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe&mediaType=html")
 }}
--->
+
+!!! warning
+
+	Pour bénéficier d'une version HTML d'un document ou d'un fragment, il est indispensable de fournir une feuille XSLT dans le dossier `path/to/basex/webapp/static/transform/hteiml`. Le chemin peut être modifié en changeant la variable `$G:xsl` du fichier `globals.xqm`. Le nom de la feuille XSLT doit être `tei2html.xsl`.
