@@ -38,6 +38,14 @@ La liste des collections auxquelles le **document** *Le Tartuffe* de Molière ap
   url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere_tartuffe&nav=parents")
 }}
 
+### Requêtes DoTS
+
+La liste des **documents** de la **collection** _Molière_ pour lesquels la métadonnée `dc:date` est _1669_ : 
+{{ macro_collapse_card_api_doc(
+  verb_http="get",
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere&filter=dc:date=1669")
+}}
+
 ## Le endpoint `Navigation`
 
 ### Requêtes "DTS compatibles"
