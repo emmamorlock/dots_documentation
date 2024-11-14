@@ -3,5 +3,7 @@ _memo_cmd.md
 .idea
 __pycache__/
 venv/
+data_test/cartulaires/
+docs/exemplier_requetes.md
 
 
