@@ -50,13 +50,13 @@ La liste des **documents** de la **collection** _Molière_ pour lesquels la mét
 
 ### Requêtes "DTS compatibles"
 
-La liste des **passages** de niveau 1 du **document** *Le Tartuffe* de Molière :
+La liste des **passages** de niveau 1 (les actes) du **document** *Le Tartuffe* de Molière :
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=1")
 }}
 
-La liste des **passages** de niveau 1 et 2 du **document** *Le Tartuffe* de Molière :
+La liste des **passages** de niveau 1 et 2 (les actes et les scènes) du **document** *Le Tartuffe* de Molière :
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=2")
@@ -68,13 +68,13 @@ La liste de tous les passages du **document** *Le Tartuffe* de Molière :
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=-1")
 }}
 
-Les métadonnée du **passage** dont la **référence** est *a3* (acte 3) du **document** *Le Tartuffe* de Molière :
+Les métadonnées du **passage** dont la **référence** est *a3* (acte 3) du **document** *Le Tartuffe* de Molière :
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&ref=a3")
 }}
 
-Les métadonnée du **passage** dont la **référence** est *a3* (acte 3) du **document** *Le Tartuffe* de Molière ainsi que la liste de tous les **passages** qu'il contient avec leurs métadonnées :
+Les métadonnées du **passage** dont la **référence** est *a3* (acte 3) du **document** *Le Tartuffe* de Molière ainsi que la liste de tous les **passages** qu'il contient avec leurs métadonnées :
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&ref=a3&down=-1")
@@ -116,6 +116,15 @@ Le **document** complet au format HTML :
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&mediaType=html")
 }}
+
+!!! info "Feuilles de transformation XSLT"
+
+	```
+	La réponse au format HTML est disponible sous réserve de déposer sa feuille de transformation XSLT dans le dossier /path/to/basex/webapp/static/transform/{db_name}.
+    Le nom de la feuille XSLT doit respecter le nommage suivant : {db_name.xslt}.
+	```
+
+
 
 Le **passage** dont la **référence** est *l0012* (niveau 4) du **document** *Le Tartuffe* de Molière au format XML/TEI : 
 {{ macro_collapse_card_api_doc(
