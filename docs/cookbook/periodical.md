@@ -298,12 +298,12 @@ L'élément `<citeStructure>` ( <a href="https://www.tei-c.org/release/doc/tei-p
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=ENCPOS_1972_c2&ref=2320")
+  url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=ENCPOS_1972_c2&ref=c2320")
 }}
 
 {{ macro_collapse_card_api_doc(
   verb_http="get", 
-  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=ENCPOS_1972_c2&ref=2320")
+  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=ENCPOS_1972_c2&ref=c2320")
 }}
 
 #### Créer la base de données
