@@ -58,12 +58,12 @@ Par conséquent, chaque position devient un document de cette collection annuell
     ```
 Il convient de déclarer chacune de ces unités documentaires.
 
-|unité documentaire|type de resource|data type|(x)path|
-|------------------|----------------|---------|----|
-|collection des positions|collection|file dir |`data/`|
-|volume annuel     |collection      |file dir |`data/ENCPOS_AAAA/`|
-|position          |document        |TEI file |`data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml`|
-|section           |fragment        |TEI node |`/TEI/text/boby/div`|
+|unité documentaire|type de resource|data type| (x)path                               |
+|------------------|----------------|---------|---------------------------------------|
+|collection des positions|collection|file dir | `data/`                               |
+|volume annuel     |collection      |file dir | `data/ENCPOS_AAAA/`                   |
+|position          |document        |TEI file | `data/ENCPOS_AAAA/ENCPOS_AAAA_NN.xml` |
+|section           |fragment        |TEI node | `/TEI/text/body/div`                  |
 
 #### Corpus de test
 
@@ -115,7 +115,7 @@ Le fichier `dots_metadata_mapping.xml` est important. Il permet de :
 - lister et qualifier les métadonnées partagées via le endpoint DTS Collection ;
 - déclarer leur localisation.
 
-Ces métadonnées peuvent être inscrites "en dure" dans le document `dots_metadata_mapping.xml`. Autrement dit, la valeur est inscrite directement dans le document XML.
+Ces métadonnées peuvent être inscrites "en dur" dans le document `dots_metadata_mapping.xml`. Autrement dit, la valeur est inscrite directement dans le document XML.
 
 Elles peuvent être inscrites dans la source XML/TEI, généralement dans le `teiHeader`. Dans ce cas, la localisation est inscrite en valeur de l’attribut `@xpath`.
 
@@ -230,12 +230,12 @@ Par conséquent, chaque position devient un fragment de ce document.
 
 Il convient de déclarer chacune de ces unités documentaires.
 
-|unité documentaire|type de resource|data type|(x)path|
-|------------------|----------------|---------|----|
-|collection des positions|collection|file dir |`data/`|
-|volume annuel     |document        |TEI file |`data/ENCPOS_AAAA.xml/`|
-|position          |fragment        |TEI node |`/TEI/text/boby/div[@type='position]'`|
-|section           |fragment        |TEI node |`/TEI/text/boby/div[@type='position]/div`|
+|unité documentaire|type de resource|data type| (x)path                                   |
+|------------------|----------------|---------|-------------------------------------------|
+|collection des positions|collection|file dir | `data/`                                   |
+|volume annuel     |document        |TEI file | `data/ENCPOS_AAAA.xml/`                   |
+|position          |fragment        |TEI node | `/TEI/text/body/div[@type='position]'`    |
+|section           |fragment        |TEI node | `/TEI/text/body/div[@type='position]/div` |
 
 #### Corpus de test
 
