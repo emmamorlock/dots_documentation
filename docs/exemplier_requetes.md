@@ -3,7 +3,9 @@
 L’objectif de cette documentation est de **comprendre par l’exemple** les paramètres DTS disponibles et d’appréhender les usages possibles de leurs combinaisons.
 
 !!!warning
-	DoTS propose une implémentation de la version [1-alpha](https://distributed-text-services.github.io/specifications/versions/1-alpha/) de DTS.
+	DoTS propose une implémentation de la version [1-alpha](https://distributed-text-services.github.io/specifications/versions/1-alpha/) de DTS.  
+    DoTS ne fonctionne que à partir de données XML/TEI et offre par défaut des réponses en TEI.
+
 
 
 ## Définitions
@@ -27,6 +29,8 @@ Usages :
 
 Lister les **projets** disponibles : 
 
+> On distingue ici les différents projets (collections de premier niveau) disponibles.
+
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/collection")
@@ -34,8 +38,7 @@ Lister les **projets** disponibles :
 
 Lister les contenus (collections et/ou documents) du **projet** *theater* et leurs métadonnées : 
 
-> Le projet théâtre comprend 4 collections (`totalChildren`) finement décrites.  
-> NB. Une même pièce peut appartenir à plusieurs de ces collections (voir plus bas).
+> Le projet théâtre comprend 4 collections (`totalChildren`) finement décrites.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
@@ -44,36 +47,40 @@ Lister les contenus (collections et/ou documents) du **projet** *theater* et leu
 
 Lister le contenu de la **collection** "*Trois pièces de Molière*" : 
 
-> Cette collection comprend 3 pièces dont les métadonnées sont listées ici.  
-> On constate ici que le niveau d’éditorialisation des pièces diffère (`maxCiteDepth`, voir…)  
-> On constate encore que chacune de ces pièces dépend de 2 collections différentes (`totalParents`)
+> Cette collection comprend 3 pièces dont les métadonnées sont listées ici.     
+> On constate aussi, d'après le `maxCiteDepth`, que le niveau d’éditorialisation des pièces diffère.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere")
 }}
 
-Lister les métadonnées du **document** *L'avare* de Molière :
+Lister les métadonnées d'un **document** :
 
-> Pour un `id` de **document** (`moliere_avare`), le *endpoint* `Collection` permet ici de lister les métadonnées de ce document.
+> Pour un `id` de **document** (`moliere_avare`), le *endpoint* `Collection` permet ici de lister les métadonnées de ce document.  
+> On constate que cette pièce dépend de 2 collections différentes (`totalParents`).
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere_avare")
 }}
 
-La liste des collections auxquelles le **document** *Le Tartuffe* de Molière appartient : 
+Lister les collections auxquelles le **document** `moliere_avare` appartient : 
 
-> On observe qu’un même document peut être associé à différentes collections. *Le Tartuffe* est ici membre des collections *Trois pièces de Molière* et *Les comédies*.
+> Ici, *L'Avare* est membre des collections *Trois pièces de Molière* et *Les comédies*.  
+> Il est possible de changer le "sens de circulation" pour accéder aux informations concernant les parents d'une ressource et non plus ses enfants.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
-  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere_tartuffe&nav=parents")
+  url="https://dots.chartes.psl.eu/demo/api/dts/collection?id=moliere_avare&nav=parents")
 }}
 
 ### Options DoTS
 
-La liste des **documents** de la **collection** _Molière_ pour lesquels la métadonnée `dc:date` est _1669_ : 
+Lister des **documents** de la **collection** _moliere_ pour lesquels la métadonnée `dc:date` est _1669_ : 
+
+> Un utilisateur peut filtrer des résultats en fonction de la valeur d'une métadonnée de son choix.  
+> Le paramètre DoTS `filter` est disponible pour tous les endpoints.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
@@ -90,48 +97,63 @@ Usages :
 
 ### Requêtes DTS
 
-La liste des **fragments** de niveau 1 (les actes) du **document** *Le Tartuffe* de Molière :
+Lister les **fragments** de niveau 1 (les actes) du **document** `moliere_tartuffe` :
+
+> La première partie de la réponse est un descriptif détaillée de la ressource (ici `moliere_tartuffe`) et particulièrement de sa structure éditoriale.
+> La liste des fragments données ensuite est calculée en fonction de la valeur du paramètre `down`.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=1")
 }}
 
-La liste des **fragments** de niveau 1 et 2 (les actes et les scènes) du **document** *Le Tartuffe* de Molière :
+Lister les **fragments** de niveau 1 et 2 (les actes et les scènes) du **document** `moliere_tartuffe` :
+
+> Le paramètre `down` permet donc d'afficher les fragments d'un document depuis le niveau 1 **jusqu'au** niveau demandé dans `down`.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=2")
 }}
 
-La liste de tous les fragments du **document** *Le Tartuffe* de Molière :
+Lister tous les fragments du **document** `moliere_tartuffe` :
+
+> La valeur `-1` permet d'afficher tous les fragments d'un **document**.  
+> Ici, `down=4` ou `down=-1` donnent la même réponse.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&down=-1")
 }}
 
-Les métadonnées du **fragment** dont la **référence** est *a3* (acte 3) du **document** *Le Tartuffe* de Molière :
+Afficher les métadonnées du **fragment** dont la **référence** est *a3* (acte 3) du **document** `moliere_tartuffe` :
+
+> Le paramètre `ref` permet d'accéder aux métadonnées d'un fragment précis.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&ref=a3")
 }}
 
-Les métadonnées du **fragment** dont la **référence** est *a3* (acte 3) du **document** *Le Tartuffe* de Molière ainsi que la liste de tous les **fragments** qu'il contient avec leurs métadonnées :
+Afficher les métadonnées du **fragment** dont la **référence** est *a3* (acte 3) du **document** `moliere_tartuffe` ainsi que la liste de tous les **fragments** qu'il contient et leurs métadonnées :
+
+> Il est possible de combiner les paramètres `ref` et `down`.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&ref=a3&down=-1")
 }}
 
-La liste des **fragments** entre le **fragment** dont la **référence** est *a3-s2* (acte 3, scène 2) et le **fragment** dont la **référence** est *a3-s6* (acte 3, scène 6), et leurs métadonnées :
+Dans le **document** `moliere_tartuffe`, lister des **fragments** entre le **fragment** dont la **référence** est *a3-s2* (acte 3, scène 2) et le **fragment** dont la **référence** est *a3-s6* (acte 3, scène 6), et leurs métadonnées :
+
+> Les paramètres `start` et `end` permettent d'accéder à tous les fragments dans un intervalle donné.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&start=a3-s2&end=a3-s6")
 }}
 
+<!--
 La liste de tous les **fragments** de type _act_ dans **l'arbre de citation** parmi tous les **fragments** du **document** _Le Tartuffe_ de Molière :
 
 {{ macro_collapse_card_api_doc(
@@ -139,10 +161,12 @@ La liste de tous les **fragments** de type _act_ dans **l'arbre de citation** pa
   url="https://dots.chartes.psl.eu/demo/api/dts/navigation?resource=moliere_tartuffe&tree=act&down=-1")
 }}
 
+-->
+
 
 ### Options DoTS
 
-Tous les **fragments** de niveau 3 (les tours de parole) dont la métadonnée `tei:role` est *Tartuffe* :
+Dans le **document** `moliere_tartuffe`, lister tous les **fragments** de niveau 3 (les tours de parole) dont la métadonnée `tei:role` est *Tartuffe* :
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
@@ -160,36 +184,45 @@ Usages :
 
 ### Requêtes DTS
 
-Le **document** complet au format XML/TEI : 
+Accéder au **document** complet au format XML/TEI : 
+
+> Par défaut, c'est le **document** au format XML/TEI qui est proposé.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe")
 }}
 
-Le **document** complet au format HTML : 
+Accéder au **document** complet au format HTML : 
+
+> Pour bénéficier d'une version HTML, c'est à l'éditeur de fournir les feuilles de transformation XSLT.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&mediaType=html")
 }}
 
+<!--
 !!! info "Feuilles de transformation XSLT"
 
 	```
 	La réponse au format HTML est disponible sous réserve de déposer sa feuille de transformation XSLT dans le dossier /path/to/basex/webapp/static/transform/{db_name}.
     Le nom de la feuille XSLT doit respecter le nommage suivant : {db_name.xslt}.
 	```
+-->
 
+Accéder au **fragment** dont la **référence** est *l0012* (niveau 4) du **document** `moliere_tartuffe` au format XML/TEI : 
 
-Le **fragment** dont la **référence** est *l0012* (niveau 4) du **document** *Le Tartuffe* de Molière au format XML/TEI : 
+> On constate que les paramètres `ref`, `start` et `end` sont disponibles pour les endpoints `Navigation` ET `Document`.
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&ref=l0012")
 }}
 
-Les **fragments** entre le **fragment** dont la **référence** est *a1-s1_05* (niveau 3) et le **fragment** dont la **référence** est *l0023* (niveau 4) au format XML/TEI : 
+Accéder aux **fragments** entre le **fragment** dont la **référence** est *a1-s1_05* (niveau 3) et le **fragment** dont la **référence** est *l0023* (niveau 4) au format XML/TEI : 
+
+> On constate que l'intervalle de fragments demandés peut se faire à partir de fragments de niveaux différents (ici niveaux 3 et 4).
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
@@ -198,23 +231,27 @@ Les **fragments** entre le **fragment** dont la **référence** est *a1-s1_05* (
 
 ### Options DoTS
 
-Tous les **fragments** du **document** *Le Tartuffe* de Molière pour lesquels le tour de parole est Tartuffe : 
+Accéder à tous les **fragments** du **document** `moliere_tartuffe` pour lesquels le tour de parole est Tartuffe : 
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&filter=tei:role=Tartuffe")
 }}
 
-Tous les **fragments** entre l'acte 1 et l'acte 3 du **document** *Le Tartuffe* de Molière dont le tour de parole est celui de *Orgon*, au format HTML : 
+Accéder à tous les **fragments** entre l'acte 1 et l'acte 3 du **document** `moliere_tartuffe` dont le tour de parole est celui de *Orgon*, au format HTML : 
+
+> Le paramètre DoTS `filter` peut être combiné avec les autres paramètres DTS (ici avec `start`, `end` et `mediaType`).
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
   url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&start=a1&end=a3&filter=tei:role=Orgon&mediaType=html")
 }}
 
-Le **fragment** dont la référence est *a4* (acte 4) du **document** *Le Tartuffe* de Molière, en excluant les **fragments "enfants"** : 
+Accéder au **fragment** dont la référence est *r3587* (Troisième partie) du **document** `ENCPOS_1972_18`, en excluant les **fragments "enfants"** : 
 
 {{ macro_collapse_card_api_doc(
   verb_http="get",
-  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=moliere_tartuffe&ref=a4&excludeFragments=true")
+  url="https://dots.chartes.psl.eu/demo/api/dts/document?resource=ENCPOS_1972_18&ref=r3587&excludeFragments=true")
 }}
+
+Ce tour d'horizon de l'API DTS dans son implémentation DoTS montre qu'il est possible d'accèder très finement aux **documents**, aux **fragments** d'un document et à toutes leurs **métadonnées** grâce aux trois endpoints et à la combinaison de leurs paramètres.
