@@ -6,7 +6,6 @@ Des cookbooks illustrent la mise en œuvre de ces recommandations, pour différe
 
 - [périodiques](./periodical.md)
 - [théâtre](./theater.md)
-- [cartulaires](./cartulaires.md)
 
 À venir :
 
