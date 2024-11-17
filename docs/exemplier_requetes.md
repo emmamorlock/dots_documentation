@@ -17,6 +17,35 @@ L’objectif de cette documentation est de **comprendre par l’exemple** les pa
 - Pour DoTS, un **document** correspond à un fichier XML/TEI. L’éditeur est invité à définir le découpage éditorial de son corpus en documents : par exemple, dans le cas de la publication d’un périodique, il peut considérer que chaque article est un document (un fichier XML/TEI par article dans ce cas), ou que le volume est un document (un unique fichier XML/TEI pour ce volume, regroupant l’ensemble des articles qui seront alors traités comme des fragments).
 - Un **fragment** correspond à un passage déclaré du document. Un fragment peut-être une scène d’une pièce de théâtre, un acte d’un cartulaire, un poème dans un recueil. Les métadonnées de ces fragments sont accessibles grâce au *endpoint* `Navigation`.
 
+## Modèle documentaire
+
+L'essentiel des exemples présentés ci-dessous sont issus du **projet** `theater` dont le modèle documentaire est le suivant :
+
+???+ info "Hiérarchie documentaire" 
+    ```  
+   
+    theatre							collection (collection de premier niveau)
+      > moliere						collection
+        > moliere_avare 			document
+          > actes					fragment
+            > scène					fragment
+              > tour de parole		fragment
+        > moliere_dom-juan          document
+        > moliere_tartuffe          document
+      > racine                      collection
+        > racine_andromaque         documment
+        > racine_phedre             document
+      > comedie                     collection
+        > moliere_avare             document
+        > moliere_tartuffe          document
+      > tragedie                    collection
+        > moliere_dom-juan          document
+        > racine_andromaque         document
+        > racine_phedre             document
+
+    ```
+
+
 ## *Endpoint* `Collection`
 
 Usages : 
