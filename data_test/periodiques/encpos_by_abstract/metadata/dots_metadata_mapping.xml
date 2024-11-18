@@ -5,7 +5,7 @@
   xmlns:html="http://www.w3.org/1999/xhtml">
   <mapping>
     <!-- collections -->
-    <dc:title  scope="collection" format="tsv" source="./default_collections_titles.tsv" resourceId="docId" value="title"/>
+    <dc:title  scope="collection" format="tsv" source="./default_collections_titles.tsv" resourceId="collectionId" value="title"/>
     <!-- documents -->
     <dct:license scope="document" resourceId="all" value=".">https://creativecommons.org/licenses/by-nc-sa/4.0/</dct:license>
     <dc:title scope="document" xpath="//titleStmt/title[@type = 'main' or position() = 1]"/>

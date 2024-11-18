@@ -13,6 +13,7 @@ nav:
         - Périodiques: cookbook/periodical.md
         - Théâtre: cookbook/theater.md
     - DTS API: api.md
+    - Exemplier: dts-requests-overview.md
 
 theme:
   name: material

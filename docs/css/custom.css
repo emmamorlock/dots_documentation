@@ -126,3 +126,7 @@
 .label-mkdocs-container > a:hover {
     color: #000000 !important;
 }
+
+blockquote {
+    font-size: 0.7rem;
+}
